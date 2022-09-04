@@ -1,0 +1,89 @@
+.login {
+  height: 100%;
+  &.inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+  }
+
+  &__header {
+    text-align: center;
+    font-size: 2.8rem;
+  }
+
+  &__form {
+    min-width: 35rem;
+    background: #fff;
+    padding: 3.5rem;
+    border: 1px solid #d9e2ef;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+
+    &__error {
+      overflow: hidden;
+      height: 0;
+      color: red;
+      font-size: 1.4rem;
+      font-weight: bold;
+      @include transition-std;
+
+      &.active {
+        @include transition-std;
+        height: 2rem;
+      }
+    }
+
+    &__button {
+      border-radius: 0.2rem;
+      cursor: pointer;
+      width: 100%;
+      padding: 0.6rem 1.2rem;
+      color: #fff;
+      font-size: 1.6rem;
+
+      &--violet {
+        background-color: #7c69ef;
+        border: 0.1rem solid #7c69ef;
+        @include transition-std;
+
+        &:hover {
+          @include transition-std;
+          background-color: #705ed6;
+          border: 0.1rem solid #705ed6;
+        }
+      }
+    }
+
+    &__block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+
+      label {
+        font-size: 1.6rem;
+      }
+      input {
+        padding: 0.6rem 1.2rem;
+        border: 1px solid #d9e2ef;
+        border-radius: 0.2rem;
+      }
+
+      &--check {
+        label {
+          font-size: 1.6rem;
+          display: flex;
+          align-items: center;
+          gap: 0.6rem;
+        }
+      }
+    }
+  }
+}

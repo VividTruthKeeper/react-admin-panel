@@ -1,16 +1,23 @@
-import React, { useState, useEffect } from "react";
+// Modules
+import React, { useState, useEffect, useContext } from "react";
+import { UserContext } from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const cred: Record<string, string> = {
-    username: "admin@2022",
+    username: "admin_2022",
     password: "backpackadmin",
   };
+
   const [valid, setValid] = useState({
     username: "",
     password: "",
     check: false,
     valid: false,
   });
+
+  const { user, setUser } = useContext<any>(UserContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (valid.username === cred.username && valid.password === cred.password) {
@@ -19,6 +26,12 @@ const Login = () => {
       setValid({ ...valid, valid: false });
     }
   }, [valid.username, valid.password]);
+
+  useEffect(() => {
+    if (user.username) {
+      navigate("/");
+    }
+  }, [user]);
 
   return (
     <main className="login">
@@ -75,8 +88,14 @@ const Login = () => {
               </span>
               <button
                 className="login__form__button login__form__button--violet"
-                onClick={(e: React.FormEvent<HTMLButtonElement>) => {
+                onClick={() => {
                   setValid({ ...valid, check: true });
+                  if (valid.valid) {
+                    setUser({
+                      username: valid.username,
+                      accessLevel: "admin",
+                    });
+                  }
                 }}
               >
                 Login

@@ -1,0 +1,60 @@
+.aside {
+  @include transition-std;
+  overflow: hidden;
+  max-width: 0;
+  min-width: 0rem;
+  width: 100%;
+
+  &.active {
+    max-width: 100%;
+    min-width: 20rem;
+    @include transition-std;
+  }
+
+  &__list {
+    background: #e0dfdf;
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+
+    &__element {
+      @include transition-std;
+      background: transparent;
+
+      font-size: 1.6rem;
+      cursor: pointer;
+
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 1rem;
+        width: 100%;
+        padding: 0.8rem 0.4rem 0.8rem 1.2rem;
+      }
+
+      &:hover {
+        @include transition-std;
+        background: #cccccc;
+      }
+
+      &__img {
+        width: 2rem;
+        height: 2rem;
+
+        img {
+          width: 2rem;
+          height: 2rem;
+          object-fit: contain;
+        }
+      }
+
+      &--title {
+        cursor: default !important;
+        background: transparent !important;
+        font-size: 1.4rem;
+      }
+    }
+  }
+}

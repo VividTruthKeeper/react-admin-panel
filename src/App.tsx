@@ -8,6 +8,7 @@ import "./assets/styles/style.scss";
 
 // Pages
 import Login from "./pages/Login";
+import Main from "./pages/Main";
 
 const App = () => {
   const [user, setUser] = useState({
@@ -29,6 +30,7 @@ const App = () => {
     <UserContext.Provider value={userValue}>
       <div className="App">
         <Routes>
+          <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
         </Routes>
       </div>

@@ -12,6 +12,7 @@ const Login = () => {
   const [valid, setValid] = useState({
     username: "",
     password: "",
+    remember: false,
     check: false,
     valid: false,
   });
@@ -73,7 +74,14 @@ const Login = () => {
               </div>
               <div className="login__form__block--check">
                 <label>
-                  <input type="checkbox" name="remember" id="remember" />
+                  <input
+                    type="checkbox"
+                    name="remember"
+                    id="remember"
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      setValid({ ...valid, remember: e.target.checked });
+                    }}
+                  />
                   <span>Remember me</span>
                 </label>
               </div>
@@ -95,6 +103,13 @@ const Login = () => {
                       username: valid.username,
                       accessLevel: "admin",
                     });
+                  }
+                  if (valid.remember) {
+                    const value = {
+                      username: valid.username,
+                      accessLevel: "admin",
+                    };
+                    localStorage.setItem("userData", JSON.stringify(value));
                   }
                 }}
               >

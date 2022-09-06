@@ -21,6 +21,7 @@
     flex-direction: column;
 
     &__element {
+      min-width: 13.12rem;
       @include transition-std;
       background: transparent;
       display: flex;

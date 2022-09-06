@@ -17,7 +17,8 @@
   &__content {
     &__stats {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3rem;
     }
   }
 
@@ -45,7 +46,16 @@
   }
 
   &.yellow {
-    background: #c69500;
+    background: #ffc107;
+  }
+  &.black {
+    background: #161c2d;
+  }
+  &.green {
+    background: #42ba96;
+  }
+  &.violet {
+    background: #7c69ef;
   }
 
   span {

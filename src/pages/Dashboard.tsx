@@ -21,6 +21,21 @@ const Dashboard = () => {
               text="Lorem, ipsum dolor sit amet consectetur adipisicing elit."
               topNumber={123}
             />
+            <StatCard
+              color="green"
+              text="Lorem, ipsum dolor sit amet consectetur adipisicing elit."
+              topNumber={123}
+            />
+            <StatCard
+              color="violet"
+              text="Lorem, ipsum dolor sit amet consectetur adipisicing elit."
+              topNumber={123}
+            />
+            <StatCard
+              color="black"
+              text="Lorem, ipsum dolor sit amet consectetur adipisicing elit."
+              topNumber={123}
+            />
           </div>
         </div>
       </div>

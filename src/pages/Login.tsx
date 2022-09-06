@@ -30,7 +30,7 @@ const Login = () => {
 
   useEffect(() => {
     if (user.username) {
-      navigate("/");
+      navigate("/dashboard");
     }
   }, [user]);
 

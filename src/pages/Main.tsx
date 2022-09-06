@@ -1,6 +1,9 @@
 // Modules
 import { useState, useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import {
+  useNavigate,
+  //  useLocation
+} from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
 // Components
@@ -12,8 +15,13 @@ import { userContextType } from "../types/user";
 
 const Main = ({ child }: any) => {
   const navigate = useNavigate();
+  // const location = useLocation();
   const { user, setUser }: userContextType = useContext(UserContext);
   const [aside, setAside] = useState(true);
+
+  // useEffect(() => {
+  //   if(location.pathname.includes('dashboard'))
+  // }, [])
 
   useEffect(() => {
     if (!user.username) {

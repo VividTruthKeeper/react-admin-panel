@@ -1,0 +1,58 @@
+.dashboard {
+  &__head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    h1 {
+      font-size: 3.2rem;
+    }
+  }
+
+  &__img {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  &__content {
+    &__stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &.inner {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+}
+
+.statcard {
+  cursor: default;
+  @include transition-std;
+  transform: translateY(0);
+  border-radius: 0.5rem;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+
+  &:hover {
+    @include transition-std;
+    transform: translateY(-1rem);
+  }
+
+  &.yellow {
+    background: #c69500;
+  }
+
+  span {
+    font-size: 2.4rem;
+  }
+
+  p {
+    font-size: 1.6rem;
+  }
+}

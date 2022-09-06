@@ -9,6 +9,7 @@ import "./assets/styles/style.scss";
 // Pages
 import Login from "./pages/Login";
 import Main from "./pages/Main";
+import Dashboard from "./pages/Dashboard";
 
 const App = () => {
   const [user, setUser] = useState({
@@ -31,6 +32,7 @@ const App = () => {
       <div className="App">
         <Routes>
           <Route path="/" element={<Main />} />
+          <Route path="/dashboard" element={<Main child={<Dashboard />} />} />
           <Route path="/login" element={<Login />} />
         </Routes>
       </div>

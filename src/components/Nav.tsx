@@ -1,14 +1,16 @@
 // Modules
 import { useContext, useState } from "react";
 import { UserContext } from "../context/UserContext";
+import { Link } from "react-router-dom";
 
 // Icons
 import Orient from "../assets/icons/logo_orient.svg";
-import Burger from "../assets/icons/burger.svg";
-import Profile from "../assets/icons/profile.svg";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { AiOutlineUser } from "react-icons/ai";
 
 // Types
 import { userContextType } from "../types/user";
+
 interface Props {
   aside: boolean;
   setAside: React.Dispatch<boolean>;
@@ -22,16 +24,14 @@ const Nav = ({ aside, setAside }: Props) => {
       <div className="container">
         <div className="nav inner">
           <div className="nav__left">
-            <div className="nav__img">
+            <Link to={"/dashboard"} className="nav__img">
               <img src={Orient} alt="orient" />
-            </div>
-            <button
+            </Link>
+            <GiHamburgerMenu
               type="button"
               className="nav__btn"
               onClick={() => setAside(!aside)}
-            >
-              <img src={Burger} alt="" />
-            </button>
+            />
           </div>
           <div className="nav__right">
             <div
@@ -40,9 +40,7 @@ const Nav = ({ aside, setAside }: Props) => {
                 setDropdown(!dropdown);
               }}
             >
-              <div className="nav__right__user__img">
-                <img src={Profile} alt="" />
-              </div>
+              <AiOutlineUser className="nav__right__user__img" />
               <span>Profile</span>
               <div
                 className={dropdown ? "nav__dropdown active" : "nav__dropdown"}

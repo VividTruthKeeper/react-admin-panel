@@ -1,13 +1,17 @@
 .posts {
+  select {
+    padding: 1rem 1.2rem;
+    border: 1px solid #b8b9bb;
+  }
+
   &.inner {
     display: flex;
     flex-direction: column;
     gap: 4rem;
+    padding-bottom: 3rem;
   }
 
   &__table {
-    padding: 3rem 0;
-
     &__head {
       min-height: unset !important;
       background: #dbdbdb;
@@ -58,8 +62,88 @@
     }
 
     tbody {
+      max-height: 70vh;
+      overflow-y: auto;
       display: flex;
       flex-direction: column;
+    }
+  }
+}
+
+.post {
+  padding-bottom: 4rem;
+  &.inner {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  h1 {
+    font-size: 2.4rem;
+  }
+
+  &__head {
+    svg {
+      width: 5rem;
+      height: 5rem;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+
+    &__btn {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      max-width: 30rem;
+      border-radius: 0.2rem;
+      cursor: pointer;
+      width: 100%;
+      padding: 0.6rem 1.2rem;
+      color: #fff;
+      font-size: 1.6rem;
+      background-color: #7c69ef;
+      border: 0.1rem solid #7c69ef;
+      @include transition-std;
+      &:hover {
+        @include transition-std;
+        background-color: #705ed6;
+        border: 0.1rem solid #705ed6;
+      }
+    }
+
+    input {
+      font-size: 1.6rem;
+      padding: 1rem 1.2rem;
+      border: 1px solid #b8b9bb;
+      border-radius: 0.2rem;
+      cursor: default;
+      background: #ebedef;
+    }
+
+    textarea {
+      background: #ebedef;
+      cursor: default;
+      padding: 1rem 1.2rem;
+      resize: none;
+      outline: none;
+      font-size: 1.6rem;
+
+      border: 1px solid #b8b9bb;
+      border-radius: 0.2rem;
+    }
+
+    &__block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+
+      h4 {
+        font-size: 1.6rem;
+      }
     }
   }
 }

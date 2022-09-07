@@ -16,6 +16,7 @@ import Main from "./pages/Main";
 import Dashboard from "./pages/Dashboard";
 import Posts from "./pages/Posts";
 import Details from "./pages/Details";
+import Post from "./pages/Post";
 
 const App = () => {
   const date = new Date("0.0.0000");
@@ -56,6 +57,7 @@ const App = () => {
             <Route path="/" element={<Main />} />
             <Route path="/dashboard" element={<Main child={<Dashboard />} />} />
             <Route path="/posts" element={<Main child={<Posts />} />} />
+            <Route path="/posts/:id" element={<Main child={<Post />} />} />
             <Route
               path="/user_details"
               element={<Main child={<Details />} />}

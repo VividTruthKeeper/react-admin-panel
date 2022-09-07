@@ -2,9 +2,13 @@
 import { useMemo, useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { UserContext } from "./context/UserContext";
+import { PostContext } from "./context/PostContext";
 
 // Style
 import "./assets/styles/style.scss";
+
+// Types
+import { PostType } from "./types/posts";
 
 // Pages
 import Login from "./pages/Login";
@@ -14,6 +18,20 @@ import Posts from "./pages/Posts";
 import Details from "./pages/Details";
 
 const App = () => {
+  const date = new Date("0.0.0000");
+  const [posts, setPosts] = useState<PostType[]>([
+    {
+      id: -1,
+      category: "",
+      title: "",
+      link: "",
+      date: date,
+      summary: "",
+      createdAt: date,
+      updatedAt: date,
+    },
+  ]);
+
   const [user, setUser] = useState({
     username: "",
     accessLevel: "",
@@ -28,19 +46,25 @@ const App = () => {
   }, []);
 
   const userValue = useMemo(() => ({ user, setUser }), [user, setUser]);
+  const postValue = useMemo(() => ({ posts, setPosts }), [posts, setPosts]);
 
   return (
-    <UserContext.Provider value={userValue}>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/dashboard" element={<Main child={<Dashboard />} />} />
-          <Route path="/posts" element={<Main child={<Posts />} />} />
-          <Route path="/user_details" element={<Main child={<Details />} />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
-      </div>
-    </UserContext.Provider>
+    <PostContext.Provider value={postValue}>
+      <UserContext.Provider value={userValue}>
+        <div className="App">
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/dashboard" element={<Main child={<Dashboard />} />} />
+            <Route path="/posts" element={<Main child={<Posts />} />} />
+            <Route
+              path="/user_details"
+              element={<Main child={<Details />} />}
+            />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </div>
+      </UserContext.Provider>
+    </PostContext.Provider>
   );
 };
 

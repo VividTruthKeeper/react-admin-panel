@@ -4,7 +4,7 @@ import { UserContext } from "../context/UserContext";
 import { Link } from "react-router-dom";
 
 // Icons
-import Orient from "../assets/icons/logo_orient.svg";
+import { ImStatsDots } from "react-icons/im";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { AiOutlineUser } from "react-icons/ai";
 
@@ -25,7 +25,7 @@ const Nav = ({ aside, setAside }: Props) => {
         <div className="nav inner">
           <div className="nav__left">
             <Link to={"/dashboard"} className="nav__img">
-              <img src={Orient} alt="orient" />
+              <ImStatsDots />
             </Link>
             <GiHamburgerMenu
               type="button"

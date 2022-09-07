@@ -42,6 +42,12 @@ button {
   border: none;
 }
 
+button:disabled {
+  background: #d4d4d4 !important;
+  border: none !important;
+  cursor: not-allowed;
+}
+
 a {
   color: #000;
   text-decoration: none;

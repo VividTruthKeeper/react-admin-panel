@@ -3,12 +3,10 @@ import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
-  const cred: Record<string, string> = {
-    username: "admin_2022",
-    password: "backpackadmin",
-  };
+// Credits
+import { cred } from "../user";
 
+const Login = () => {
   const [valid, setValid] = useState({
     username: "",
     password: "",

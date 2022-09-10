@@ -24,11 +24,23 @@ const headers: string[] = [
 ];
 
 const Posts = () => {
+  const [categories, setCategories] = useState<string[]>(["All"]);
   const { posts, setPosts } = useContext<any>(PostContext);
   const [category, setCategory] = useState<string>("All");
   useEffect(() => {
     getPosts(setPosts);
   }, []);
+
+  useEffect(() => {
+    const categoriesTemp: string[] = categories;
+    if (posts[0].id !== -1) {
+      posts.map((post: PostType) => categoriesTemp.push(post.category));
+      let categoriesTempUnique = categoriesTemp.filter((element, index) => {
+        return categoriesTemp.indexOf(element) === index;
+      });
+      setCategories(categoriesTempUnique);
+    }
+  }, [posts]);
 
   return (
     <main className="posts">
@@ -45,11 +57,21 @@ const Posts = () => {
                 setCategory(e.target.value);
               }}
             >
-              <option value="All" defaultChecked>
-                All
-              </option>
-              <option value="TurkmenPortal">TurkmenPortal</option>
-              <option value="Orient">Orient</option>
+              {categories.map((category) => {
+                if (category === "All") {
+                  return (
+                    <option key={uuidv4()} value={category} defaultChecked>
+                      {category}
+                    </option>
+                  );
+                } else {
+                  return (
+                    <option key={uuidv4()} value={category}>
+                      {category}
+                    </option>
+                  );
+                }
+              })}
             </select>
           </div>
           <table className="posts__table">

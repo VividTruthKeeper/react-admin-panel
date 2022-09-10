@@ -86,26 +86,6 @@ const Post = () => {
                 value={postData.id !== -1 ? postData.summary : ""}
               ></textarea>
             </div>
-            <div className="post__content__block">
-              <h4>Created</h4>
-              <input
-                type={"text"}
-                readOnly
-                value={
-                  postData.id !== -1 ? parseDate(postData.createdAt)[0] : ""
-                }
-              />
-            </div>
-            <div className="post__content__block">
-              <h4>Updated</h4>
-              <input
-                type={"text"}
-                readOnly
-                value={
-                  postData.id !== -1 ? parseDate(postData.updatedAt)[0] : ""
-                }
-              />
-            </div>
             <a
               className="post__content__btn"
               href={postData.id !== -1 ? postData.link : ""}

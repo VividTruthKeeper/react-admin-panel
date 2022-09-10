@@ -12,6 +12,7 @@ import { getPosts } from "../helpers/apiRequests";
 import { PostType } from "../types/posts";
 import { Link } from "react-router-dom";
 import { parseDate } from "../helpers/parseDate";
+import { capitalizeFirstLetter } from "../helpers/stringMethods";
 
 // Data
 const headers: string[] = [
@@ -34,11 +35,14 @@ const Posts = () => {
   useEffect(() => {
     const categoriesTemp: string[] = categories;
     if (posts[0].id !== -1) {
-      posts.map((post: PostType) => categoriesTemp.push(post.category));
+      posts.map((post: PostType) =>
+        categoriesTemp.push(capitalizeFirstLetter(post.category.toLowerCase()))
+      );
       let categoriesTempUnique = categoriesTemp.filter((element, index) => {
         return categoriesTemp.indexOf(element) === index;
       });
       setCategories(categoriesTempUnique);
+      console.log(categoriesTempUnique);
     }
   }, [posts]);
 
@@ -92,7 +96,11 @@ const Posts = () => {
                         >
                           <tr>
                             <td>{index + 1}</td>
-                            <td>{post.category}</td>
+                            <td>
+                              {capitalizeFirstLetter(
+                                post.category.toLowerCase()
+                              )}
+                            </td>
                             <td>{post.title}</td>
                             <td>
                               <a
@@ -110,7 +118,10 @@ const Posts = () => {
                       );
                     })
                   : posts.map((post: PostType, index: number) => {
-                      if (post.category === category) {
+                      if (
+                        capitalizeFirstLetter(post.category.toLowerCase()) ===
+                        category
+                      ) {
                         return (
                           <Link
                             className="post-link"
@@ -119,7 +130,11 @@ const Posts = () => {
                           >
                             <tr>
                               <td>{index + 1}</td>
-                              <td>{post.category}</td>
+                              <td>
+                                {capitalizeFirstLetter(
+                                  post.category.toLowerCase()
+                                )}
+                              </td>
                               <td>{post.title}</td>
                               <td>
                                 <a

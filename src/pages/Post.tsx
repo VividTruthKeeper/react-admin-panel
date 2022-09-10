@@ -10,6 +10,7 @@ import { BiLinkExternal } from "react-icons/bi";
 
 // Helpers
 import { parseDate } from "../helpers/parseDate";
+import { capitalizeFirstLetter } from "../helpers/stringMethods";
 
 const Post = () => {
   const date = new Date("0.0.0000");
@@ -59,7 +60,11 @@ const Post = () => {
               <input
                 type="text"
                 readOnly
-                value={postData.id !== -1 ? postData.category : ""}
+                value={
+                  postData.id !== -1
+                    ? capitalizeFirstLetter(postData.category.toLowerCase())
+                    : ""
+                }
               />
             </div>
             <div className="post__content__block">

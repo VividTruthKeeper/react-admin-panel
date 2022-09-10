@@ -2,6 +2,10 @@
   select {
     padding: 1rem 1.2rem;
     border: 1px solid #b8b9bb;
+
+    option {
+      text-transform: capitalize;
+    }
   }
 
   &.inner {

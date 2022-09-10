@@ -83,8 +83,6 @@ const Posts = () => {
                             </td>
                             <td>{parseDate(post.date)[0]}</td>
                             <td>{post.summary}</td>
-                            <td>{parseDate(post.createdAt)[0]}</td>
-                            <td>{parseDate(post.updatedAt)[0]}</td>
                           </tr>
                         </Link>
                       );

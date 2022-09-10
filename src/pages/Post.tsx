@@ -82,7 +82,7 @@ const Post = () => {
               <h4>Summary</h4>
               <textarea
                 readOnly
-                rows={20}
+                rows={5}
                 value={postData.id !== -1 ? postData.summary : ""}
               ></textarea>
             </div>

@@ -10,5 +10,5 @@ export const getPosts = (setPosts: React.Dispatch<PostType[]>) => {
     .then((res) => {
       setPosts(res.data);
     })
-    .catch();
+    .catch((err) => {});
 };

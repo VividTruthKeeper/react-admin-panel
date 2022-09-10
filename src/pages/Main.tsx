@@ -1,25 +1,12 @@
 // Modules
-import { useState, useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { UserContext } from "../context/UserContext";
+import { useState } from "react";
 
 // Components
 import Nav from "../components/Nav";
 import Aside from "../components/Aside";
 
-// Types
-import { userContextType } from "../types/user";
-
 const Main = ({ child }: any) => {
-  const navigate = useNavigate();
-  const { user, setUser }: userContextType = useContext(UserContext);
   const [aside, setAside] = useState(true);
-
-  useEffect(() => {
-    if (!user.username) {
-      navigate("/login");
-    }
-  }, [user]);
 
   return (
     <main className="main">

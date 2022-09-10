@@ -27,7 +27,9 @@ const Nav = ({ aside, setAside }: Props) => {
             <Link
               to={"/dashboard"}
               className="nav__img"
-              onClick={() => localStorage.setItem("lastLocation", "/dashboard")}
+              onClick={() => {
+                localStorage.setItem("lastLocation", "/dashboard");
+              }}
             >
               <ImStatsDots />
             </Link>

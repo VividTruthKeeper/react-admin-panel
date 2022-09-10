@@ -10,6 +10,7 @@ import { AiOutlineBlock } from "react-icons/ai";
 import { MdOutlineManageAccounts } from "react-icons/md";
 import { CgDetailsLess } from "react-icons/cg";
 import { BiLogOut } from "react-icons/bi";
+import { IoIosCreate } from "react-icons/io";
 
 // Types
 import { userContextType } from "../types/user";
@@ -34,6 +35,15 @@ const Aside = ({ aside, setAside }: Props) => {
           >
             <BsFillFileEarmarkPostFill className="aside__list__element__img" />
             <span>Posts</span>
+          </Link>
+        </li>
+        <li className="aside__list__element">
+          <Link
+            to={"/category"}
+            onClick={() => localStorage.setItem("lastLocation", "/category")}
+          >
+            <IoIosCreate className="aside__list__element__img" />
+            <span>Category</span>
           </Link>
         </li>
         <li className="aside__list__element aside__list__element--title">

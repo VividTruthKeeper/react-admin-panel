@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import { cred } from "../user";
 
 const Login = () => {
-  const lastLocation = localStorage.getItem("lastLocation");
   const [valid, setValid] = useState({
     username: "",
     password: "",
@@ -17,7 +16,6 @@ const Login = () => {
   });
 
   const { user, setUser } = useContext<any>(UserContext);
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (valid.username === cred.username && valid.password === cred.password) {
@@ -26,12 +24,6 @@ const Login = () => {
       setValid({ ...valid, valid: false });
     }
   }, [valid.username, valid.password]);
-
-  useEffect(() => {
-    if (user.username) {
-      navigate(lastLocation || "/dashboard");
-    }
-  }, [user]);
 
   return (
     <main className="login">

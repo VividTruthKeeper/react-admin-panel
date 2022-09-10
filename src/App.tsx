@@ -1,6 +1,6 @@
 // Modules
 import { useMemo, useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { UserContext } from "./context/UserContext";
 import { PostContext } from "./context/PostContext";
 
@@ -17,8 +17,10 @@ import Dashboard from "./pages/Dashboard";
 import Posts from "./pages/Posts";
 import Details from "./pages/Details";
 import Post from "./pages/Post";
+import Category from "./pages/Category";
 
 const App = () => {
+  const navigate = useNavigate();
   const date = new Date("0.0.0000");
   const [posts, setPosts] = useState<PostType[]>([
     {
@@ -40,7 +42,6 @@ const App = () => {
 
   useEffect(() => {
     const userData = localStorage.getItem("userData");
-
     if (userData) {
       setUser(JSON.parse(userData));
     }
@@ -48,6 +49,14 @@ const App = () => {
 
   const userValue = useMemo(() => ({ user, setUser }), [user, setUser]);
   const postValue = useMemo(() => ({ posts, setPosts }), [posts, setPosts]);
+
+  useEffect(() => {
+    if (!user.username) {
+      navigate("/login");
+    } else {
+      navigate(localStorage.getItem("lastLocation") || "/dashboard");
+    }
+  }, [user]);
 
   return (
     <PostContext.Provider value={postValue}>
@@ -57,6 +66,7 @@ const App = () => {
             <Route path="/" element={<Main />} />
             <Route path="/dashboard" element={<Main child={<Dashboard />} />} />
             <Route path="/posts" element={<Main child={<Posts />} />} />
+            <Route path="/category" element={<Main child={<Category />} />} />
             <Route path="/posts/:id" element={<Main child={<Post />} />} />
             <Route
               path="/user_details"

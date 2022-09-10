@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { cred } from "../user";
 
 const Login = () => {
+  const lastLocation = localStorage.getItem("lastLocation");
   const [valid, setValid] = useState({
     username: "",
     password: "",
@@ -28,7 +29,7 @@ const Login = () => {
 
   useEffect(() => {
     if (user.username) {
-      navigate("/dashboard");
+      navigate(lastLocation || "/dashboard");
     }
   }, [user]);
 

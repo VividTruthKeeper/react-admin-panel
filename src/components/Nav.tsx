@@ -24,7 +24,11 @@ const Nav = ({ aside, setAside }: Props) => {
       <div className="container">
         <div className="nav inner">
           <div className="nav__left">
-            <Link to={"/dashboard"} className="nav__img">
+            <Link
+              to={"/dashboard"}
+              className="nav__img"
+              onClick={() => localStorage.setItem("lastLocation", "/dashboard")}
+            >
               <ImStatsDots />
             </Link>
             <GiHamburgerMenu

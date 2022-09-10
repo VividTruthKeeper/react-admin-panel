@@ -28,7 +28,10 @@ const Aside = ({ aside, setAside }: Props) => {
           <h2>Elements</h2>
         </li>
         <li className="aside__list__element">
-          <Link to={"/posts"}>
+          <Link
+            to={"/posts"}
+            onClick={() => localStorage.setItem("lastLocation", "/posts")}
+          >
             <BsFillFileEarmarkPostFill className="aside__list__element__img" />
             <span>Posts</span>
           </Link>
@@ -38,7 +41,12 @@ const Aside = ({ aside, setAside }: Props) => {
           <h2>Account</h2>
         </li>
         <li className="aside__list__element">
-          <Link to={"/user_details"}>
+          <Link
+            to={"/user_details"}
+            onClick={() =>
+              localStorage.setItem("lastLocation", "/user_details")
+            }
+          >
             <CgDetailsLess className="aside__list__element__img" />
             <span>Details</span>
           </Link>

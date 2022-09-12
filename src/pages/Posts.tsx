@@ -42,7 +42,6 @@ const Posts = () => {
         return categoriesTemp.indexOf(element) === index;
       });
       setCategories(categoriesTempUnique);
-      console.log(categoriesTempUnique);
     }
   }, [posts]);
 

@@ -53,6 +53,18 @@ a {
   text-decoration: none;
 }
 
+.green {
+  color: green;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.red {
+  color: red;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
 @mixin transition-std {
   transition: 0.3s all ease;
 }

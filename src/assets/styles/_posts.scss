@@ -1,4 +1,50 @@
 .posts {
+  &__pagination {
+    width: 100%;
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    justify-content: flex-end;
+
+    input {
+      width: 5%;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    button {
+      cursor: pointer;
+      font-size: 1.6rem;
+      width: 15%;
+      padding: 1rem 2rem;
+      border-radius: 0.5rem;
+      background: #7c69ef;
+      color: white;
+    }
+  }
+  &__select {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+
+    label {
+      font-size: 1.4rem;
+    }
+
+    input {
+      font-size: 1.6rem;
+      padding: 1rem 1.2rem;
+      border: 1px solid #b8b9bb;
+      border-radius: 0.2rem;
+      cursor: default;
+      background: #fff;
+    }
+
+    &__wrapper {
+      display: flex;
+      gap: 1rem;
+    }
+  }
   select {
     padding: 1rem 1.2rem;
     border: 1px solid #b8b9bb;
@@ -22,9 +68,21 @@
     }
 
     th {
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
       text-align: center;
       font-size: 1.6rem;
       justify-self: center;
+      background: transparent;
+      color: #000;
+      @include transition-std;
+
+      &.active {
+        background: rgb(98, 98, 98);
+        color: #fff;
+        @include transition-std;
+      }
     }
 
     .post-link {
@@ -149,5 +207,13 @@
         font-size: 1.6rem;
       }
     }
+  }
+}
+
+.table {
+  &__empty {
+    font-size: 1.6rem;
+
+    text-align: center;
   }
 }

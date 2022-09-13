@@ -8,3 +8,12 @@ export interface PostType {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface paramsType {
+  id: "asc" | "desc";
+  category: "asc" | "desc";
+  title: "asc" | "desc";
+  link: "asc" | "desc";
+  date: "asc" | "desc";
+  summary: "asc" | "desc";
+}

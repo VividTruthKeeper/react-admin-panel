@@ -6,9 +6,12 @@ import React from "react";
 import { PostType } from "../types/posts";
 import { LinksAll } from "../types/links";
 
-export const getPosts = (setPosts: React.Dispatch<PostType[]>) => {
+export const getPosts = (
+  setPosts: React.Dispatch<PostType[]>,
+  params?: string
+) => {
   axios
-    .get("http://95.85.124.41:8080/posts")
+    .get("http://95.85.124.41:8080/posts" + (params ? params : ""))
     .then((res) => {
       setPosts(res.data.data);
     })

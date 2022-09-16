@@ -1,6 +1,7 @@
 export interface LinksAll {
   id: number;
-  link: string;
+  name: string;
+  source: string;
   createdAt: Date;
   updatedAt: Date;
 }

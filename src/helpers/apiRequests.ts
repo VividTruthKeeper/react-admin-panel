@@ -40,10 +40,13 @@ export const getLinks = (setLinks: React.Dispatch<LinksAll[]>) => {
 
 export const createLink = (
   setSuccess: React.Dispatch<string>,
-  data: { link: string }
+  data: { name: string; source: string }
 ) => {
   axios
-    .post("http://95.85.124.41:8080/link/create", { link: data.link })
+    .post("http://95.85.124.41:8080/link/create", {
+      name: data.name,
+      source: data.source,
+    })
     .then((res) => {
       setSuccess(res.data.message);
     })
@@ -55,10 +58,10 @@ export const createLink = (
 export const updateLink = (
   setSuccess: React.Dispatch<string>,
   id: number,
-  data: { link: string }
+  data: { name: string; source: string }
 ) => {
   axios
-    .put(`http://95.85.124.41:8080/link/update/${id}`, { link: data.link })
+    .put(`http://95.85.124.41:8080/link/update/${id}`, { source: data.source })
     .then((res) => {
       setSuccess(res.data.message);
     })

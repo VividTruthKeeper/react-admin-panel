@@ -3,7 +3,7 @@ export interface PostType {
   category: string;
   title: string;
   link: string;
-  date: Date;
+  publish_date: Date;
   summary: string;
   createdAt: Date;
   updatedAt: Date;

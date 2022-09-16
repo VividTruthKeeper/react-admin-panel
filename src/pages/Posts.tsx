@@ -66,6 +66,8 @@ const Posts = () => {
     }
   }, [posts]);
 
+  console.log(posts[0]);
+
   return (
     <main className="posts">
       <div className="container">
@@ -236,7 +238,7 @@ const Posts = () => {
                                 <BiLinkExternal />
                               </a>
                             </td>
-                            <td>{parseDate(post.date)[0]}</td>
+                            {/* <td>{parseDate(post.publish_date)[0]}</td> */}
                             <td>{post.summary}</td>
                           </tr>
                         </Link>
@@ -271,7 +273,7 @@ const Posts = () => {
                                   <BiLinkExternal />
                                 </a>
                               </td>
-                              <td>{parseDate(post.date)[0]}</td>
+                              {/* <td>{parseDate(post.publish_date)[0]}</td> */}
                               <td>{post.summary}</td>
                             </tr>
                           </Link>

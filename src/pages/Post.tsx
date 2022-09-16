@@ -19,7 +19,7 @@ const Post = () => {
     category: "",
     title: "",
     link: "",
-    date: date,
+    publish_date: date,
     summary: "",
     createdAt: date,
     updatedAt: date,
@@ -80,7 +80,9 @@ const Post = () => {
               <input
                 type={"text"}
                 readOnly
-                value={postData.id !== -1 ? parseDate(postData.date)[0] : ""}
+                value={
+                  postData.id !== -1 ? parseDate(postData.publish_date)[0] : ""
+                }
               />
             </div>
             <div className="post__content__block">

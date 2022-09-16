@@ -15,5 +15,7 @@ export interface paramsType {
   title: "asc" | "desc";
   link: "asc" | "desc";
   date: "asc" | "desc";
-  summary: "asc" | "desc";
+  published: "asc" | "desc";
+  created: "asc" | "desc";
+  updated: "asc" | "desc";
 }

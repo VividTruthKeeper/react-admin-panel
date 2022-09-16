@@ -12,7 +12,7 @@ import { getPosts } from "../helpers/apiRequests";
 import { PostType } from "../types/posts";
 import { Link } from "react-router-dom";
 import { parseDate } from "../helpers/parseDate";
-import { capitalizeFirstLetter } from "../helpers/stringMethods";
+// import { capitalizeFirstLetter } from "../helpers/stringMethods";
 
 // Types
 import { paramsType } from "../types/posts";
@@ -37,7 +37,9 @@ const Posts = () => {
     title: "asc",
     link: "asc",
     date: "asc",
-    summary: "asc",
+    published: "asc",
+    created: "asc",
+    updated: "asc",
   });
   const [search, setSearch] = useState<string>("");
 
@@ -47,17 +49,13 @@ const Posts = () => {
       setPosts,
       `?sortBy=${sort}.${params[key]}&strLimit=${page.perPage}&strOffset=${page.pageNumber}&filter=${search}`
     );
-  }, [params, sort, page, search]);
+  }, [params, sort, page, search, category]);
 
   useEffect(() => {
     const categoriesTemp: string[] = categories;
     if (posts[0]) {
       if (posts[0].id !== -1) {
-        posts.map((post: PostType) =>
-          categoriesTemp.push(
-            capitalizeFirstLetter(post.category.toLowerCase())
-          )
-        );
+        posts.map((post: PostType) => categoriesTemp.push(post.category));
         let categoriesTempUnique = categoriesTemp.filter((element, index) => {
           return categoriesTemp.indexOf(element) === index;
         });
@@ -66,7 +64,11 @@ const Posts = () => {
     }
   }, [posts]);
 
-  console.log(posts[0]);
+  useEffect(() => {
+    if (category !== "All") {
+      setPage({ ...page, perPage: 100 });
+    }
+  }, [category, page.perPage]);
 
   return (
     <main className="posts">
@@ -78,7 +80,7 @@ const Posts = () => {
           </div>
           <div className="posts__select__wrapper">
             <div className="posts__select">
-              <label htmlFor="category">Category</label>
+              <label htmlFor="category">Source</label>
               <select
                 id="category"
                 value={category}
@@ -107,6 +109,7 @@ const Posts = () => {
               <label htmlFor="pp">Per page</label>
               <select
                 id="pp"
+                disabled={category !== "All"}
                 value={page.perPage}
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                   setPage({ ...page, perPage: parseInt(e.target.value) });
@@ -115,18 +118,13 @@ const Posts = () => {
                 <option value="10" defaultChecked>
                   10
                 </option>
-                <option value="15" defaultChecked>
-                  15
-                </option>
-                <option value="20" defaultChecked>
-                  20
-                </option>
-                <option value="30" defaultChecked>
-                  30
-                </option>
-                <option value="40" defaultChecked>
-                  40
-                </option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="60">60</option>
+                <option value="80">80</option>
+                <option value="100">100</option>
               </select>
             </div>
             <div className="posts__select">
@@ -148,7 +146,7 @@ const Posts = () => {
                   className={sort === "id" ? "active" : ""}
                   onClick={() => {
                     setSort("id");
-                    if (params.id === "asc")
+                    if (params.id !== "asc")
                       setParams({ ...params, id: "asc" });
                     else setParams({ ...params, id: "desc" });
                   }}
@@ -159,18 +157,18 @@ const Posts = () => {
                   className={sort === "category" ? "active" : ""}
                   onClick={() => {
                     setSort("category");
-                    if (params.id === "asc")
+                    if (params.category !== "asc")
                       setParams({ ...params, category: "asc" });
                     else setParams({ ...params, category: "desc" });
                   }}
                 >
-                  Category
+                  Source
                 </th>
                 <th
                   className={sort === "title" ? "active" : ""}
                   onClick={() => {
                     setSort("title");
-                    if (params.id === "asc")
+                    if (params.title !== "asc")
                       setParams({ ...params, title: "asc" });
                     else setParams({ ...params, title: "desc" });
                   }}
@@ -181,7 +179,7 @@ const Posts = () => {
                   className={sort === "link" ? "active" : ""}
                   onClick={() => {
                     setSort("link");
-                    if (params.id === "asc")
+                    if (params.link !== "asc")
                       setParams({ ...params, link: "asc" });
                     else setParams({ ...params, link: "desc" });
                   }}
@@ -189,32 +187,43 @@ const Posts = () => {
                   Link
                 </th>
                 <th
-                  className={sort === "date" ? "active" : ""}
+                  className={sort === "published" ? "active" : ""}
                   onClick={() => {
-                    setSort("date");
-                    if (params.id === "asc")
-                      setParams({ ...params, date: "asc" });
-                    else setParams({ ...params, date: "desc" });
+                    setSort("published");
+                    if (params.published !== "asc")
+                      setParams({ ...params, published: "asc" });
+                    else setParams({ ...params, published: "desc" });
                   }}
                 >
-                  Date
+                  Published
                 </th>
                 <th
-                  className={sort === "summary" ? "active" : ""}
+                  className={sort === "created" ? "active" : ""}
                   onClick={() => {
-                    setSort("summary");
-                    if (params.id === "asc")
-                      setParams({ ...params, summary: "asc" });
-                    else setParams({ ...params, summary: "desc" });
+                    setSort("created");
+                    if (params.created !== "asc")
+                      setParams({ ...params, created: "asc" });
+                    else setParams({ ...params, created: "desc" });
                   }}
                 >
-                  Summary
+                  Created
+                </th>
+                <th
+                  className={sort === "updated" ? "active" : ""}
+                  onClick={() => {
+                    setSort("updated");
+                    if (params.updated !== "asc")
+                      setParams({ ...params, updated: "asc" });
+                    else setParams({ ...params, updated: "desc" });
+                  }}
+                >
+                  Updated
                 </th>
               </tr>
               {posts[0] ? (
                 posts[0].id !== -1 ? (
                   category === "All" ? (
-                    posts.map((post: PostType, index: number) => {
+                    posts.map((post: PostType) => {
                       return (
                         <Link
                           className="post-link"
@@ -223,11 +232,7 @@ const Posts = () => {
                         >
                           <tr>
                             <td>{post.id}</td>
-                            <td>
-                              {capitalizeFirstLetter(
-                                post.category.toLowerCase()
-                              )}
-                            </td>
+                            <td>{post.category}</td>
                             <td>{post.title}</td>
                             <td>
                               <a
@@ -238,18 +243,16 @@ const Posts = () => {
                                 <BiLinkExternal />
                               </a>
                             </td>
-                            {/* <td>{parseDate(post.publish_date)[0]}</td> */}
-                            <td>{post.summary}</td>
+                            <td>{parseDate(post.publish_date)[0]}</td>
+                            <td>{parseDate(post.createdAt)[0]}</td>
+                            <td>{parseDate(post.updatedAt)[0]}</td>
                           </tr>
                         </Link>
                       );
                     })
                   ) : (
                     posts.map((post: PostType, index: number) => {
-                      if (
-                        capitalizeFirstLetter(post.category.toLowerCase()) ===
-                        category
-                      ) {
+                      if (post.category === category) {
                         return (
                           <Link
                             className="post-link"
@@ -258,11 +261,7 @@ const Posts = () => {
                           >
                             <tr>
                               <td>{index + 1}</td>
-                              <td>
-                                {capitalizeFirstLetter(
-                                  post.category.toLowerCase()
-                                )}
-                              </td>
+                              <td>{post.category}</td>
                               <td>{post.title}</td>
                               <td>
                                 <a
@@ -273,8 +272,9 @@ const Posts = () => {
                                   <BiLinkExternal />
                                 </a>
                               </td>
-                              {/* <td>{parseDate(post.publish_date)[0]}</td> */}
-                              <td>{post.summary}</td>
+                              <td>{parseDate(post.publish_date)[0]}</td>
+                              <td>{parseDate(post.createdAt)[0]}</td>
+                              <td>{parseDate(post.updatedAt)[0]}</td>
                             </tr>
                           </Link>
                         );

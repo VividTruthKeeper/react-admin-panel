@@ -28,7 +28,7 @@ const App = () => {
       category: "",
       title: "",
       link: "",
-      date: date,
+      publish_date: date,
       summary: "",
       createdAt: date,
       updatedAt: date,

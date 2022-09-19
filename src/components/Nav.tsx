@@ -2,6 +2,7 @@
 import { useContext, useState } from "react";
 import { UserContext } from "../context/UserContext";
 import { Link } from "react-router-dom";
+import { IconContext } from "react-icons";
 
 // Icons
 import { ImStatsDots } from "react-icons/im";
@@ -31,13 +32,17 @@ const Nav = ({ aside, setAside }: Props) => {
                 localStorage.setItem("lastLocation", "/dashboard");
               }}
             >
-              <ImStatsDots />
+              <IconContext.Provider value={{ color: "#393e46" }}>
+                <ImStatsDots />
+              </IconContext.Provider>
             </Link>
-            <GiHamburgerMenu
-              type="button"
-              className="nav__btn"
-              onClick={() => setAside(!aside)}
-            />
+            <IconContext.Provider value={{ color: "#393e46" }}>
+              <GiHamburgerMenu
+                type="button"
+                className="nav__btn"
+                onClick={() => setAside(!aside)}
+              />
+            </IconContext.Provider>
           </div>
           <div className="nav__right">
             <div
@@ -46,7 +51,10 @@ const Nav = ({ aside, setAside }: Props) => {
                 setDropdown(!dropdown);
               }}
             >
-              <AiOutlineUser className="nav__right__user__img" />
+              <IconContext.Provider value={{ color: "#393e46" }}>
+                <AiOutlineUser className="nav__right__user__img" />
+              </IconContext.Provider>
+
               <span>Profile</span>
               <div
                 className={dropdown ? "nav__dropdown active" : "nav__dropdown"}

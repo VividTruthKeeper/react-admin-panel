@@ -18,14 +18,14 @@ export const getPosts = (
     .catch((err) => {});
 };
 
-export const deleteLink = (setSuccess: React.Dispatch<string>, id: number) => {
+export const deleteLink = (setSuccess: React.Dispatch<boolean>, id: number) => {
   axios
     .delete(`http://95.85.124.41:8080/link/delete/${id}`)
     .then((res) => {
-      setSuccess(res.data.message);
+      setSuccess(true);
     })
     .catch((err) => {
-      setSuccess("error");
+      setSuccess(false);
     });
 };
 

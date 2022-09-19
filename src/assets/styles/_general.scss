@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 
 * {
-  font-family: "Roboto", sans-serif;
+  font-family: "Lato", sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -22,7 +22,7 @@ html {
 }
 
 body {
-  background-color: #f1f4f8;
+  background-color: $base-black;
 }
 
 body,
@@ -49,12 +49,26 @@ button:disabled {
 }
 
 a {
-  color: #000;
   text-decoration: none;
 }
 
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+label,
+input,
+textarea,
+p {
+  color: $base-gray;
+}
+
 .green {
-  color: green;
+  color: $base-blue;
   font-size: 1.6rem;
   font-weight: bold;
 }
@@ -65,6 +79,35 @@ a {
   font-weight: bold;
 }
 
-@mixin transition-std {
-  transition: 0.3s all ease;
+input,
+textarea,
+select {
+  @include transition-fast;
+  border: 0.1rem $base-gray solid;
+  outline: $base-blue 0rem solid;
+  &:focus {
+    @include transition-fast;
+    border: 0.1rem $light-black solid;
+    outline: $base-blue 0.3rem solid;
+  }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 1rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $light-blue;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $base-blue;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $hover-blue;
 }

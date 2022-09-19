@@ -2,9 +2,10 @@
 import { v4 as uuidv4 } from "uuid";
 import React, { useContext, useEffect, useState } from "react";
 import { PostContext } from "../context/PostContext";
+import { IconContext } from "react-icons";
 
 // Icons
-import { BsFillFileEarmarkPostFill } from "react-icons/bs";
+import { FaBox } from "react-icons/fa";
 import { BiLinkExternal } from "react-icons/bi";
 
 // Helpers
@@ -12,7 +13,6 @@ import { getPosts } from "../helpers/apiRequests";
 import { PostType } from "../types/posts";
 import { Link } from "react-router-dom";
 import { parseDate } from "../helpers/parseDate";
-// import { capitalizeFirstLetter } from "../helpers/stringMethods";
 
 // Types
 import { paramsType } from "../types/posts";
@@ -75,7 +75,9 @@ const Posts = () => {
       <div className="container">
         <div className="posts inner">
           <div className="dashboard__head">
-            <BsFillFileEarmarkPostFill className="dashboard__img" />
+            <IconContext.Provider value={{ color: "#8DD77F" }}>
+              <FaBox className="dashboard__img" />
+            </IconContext.Provider>
             <h1>Posts</h1>
           </div>
           <div className="posts__select__wrapper">
@@ -140,7 +142,7 @@ const Posts = () => {
             </div>
           </div>
           <table className="posts__table">
-            <tbody>
+            <thead>
               <tr className="posts__table__head">
                 <th
                   className={sort === "id" ? "active" : ""}
@@ -220,6 +222,8 @@ const Posts = () => {
                   Updated
                 </th>
               </tr>
+            </thead>
+            <tbody>
               {posts[0] ? (
                 posts[0].id !== -1 ? (
                   category === "All" ? (

@@ -1,4 +1,15 @@
 $base-gray: #f2f2f2;
-$base-orange: #f96d00;
-$light-dark: #393e46;
+$light-black: #393e46;
 $base-black: #222831;
+$dark-blue: #00785a;
+$light-blue: #c9fce9;
+$base-blue: #2fad8c;
+$hover-blue: #268a6f;
+
+@mixin transition-std {
+  transition: 0.3s all ease;
+}
+
+@mixin transition-fast {
+  transition: 0.1s all ease;
+}

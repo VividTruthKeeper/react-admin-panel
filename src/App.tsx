@@ -17,7 +17,7 @@ import Dashboard from "./pages/Dashboard";
 import Posts from "./pages/Posts";
 import Details from "./pages/Details";
 import Post from "./pages/Post";
-import Category from "./pages/Category";
+import Source from "./pages/Source";
 
 const App = () => {
   const navigate = useNavigate();
@@ -52,6 +52,7 @@ const App = () => {
 
   useEffect(() => {
     if (!user.username) {
+      // localStorage.removeItem("lastLocation");
       navigate("/login");
     } else {
       navigate(localStorage.getItem("lastLocation") || "/dashboard");
@@ -66,7 +67,7 @@ const App = () => {
             <Route path="/" element={<Main />} />
             <Route path="/dashboard" element={<Main child={<Dashboard />} />} />
             <Route path="/posts" element={<Main child={<Posts />} />} />
-            <Route path="/category" element={<Main child={<Category />} />} />
+            <Route path="/source" element={<Main child={<Source />} />} />
             <Route path="/posts/:id" element={<Main child={<Post />} />} />
             <Route
               path="/user_details"

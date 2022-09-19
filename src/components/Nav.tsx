@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 import { IconContext } from "react-icons";
 
 // Icons
-import { ImStatsDots } from "react-icons/im";
+import { FaMeteor } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { AiOutlineUser } from "react-icons/ai";
+import { FaUserCog } from "react-icons/fa";
 
 // Types
 import { userContextType } from "../types/user";
@@ -32,11 +32,11 @@ const Nav = ({ aside, setAside }: Props) => {
                 localStorage.setItem("lastLocation", "/dashboard");
               }}
             >
-              <IconContext.Provider value={{ color: "#393e46" }}>
-                <ImStatsDots />
+              <IconContext.Provider value={{ color: "#8DD77F" }}>
+                <FaMeteor />
               </IconContext.Provider>
             </Link>
-            <IconContext.Provider value={{ color: "#393e46" }}>
+            <IconContext.Provider value={{ color: "#8DD77F" }}>
               <GiHamburgerMenu
                 type="button"
                 className="nav__btn"
@@ -51,8 +51,8 @@ const Nav = ({ aside, setAside }: Props) => {
                 setDropdown(!dropdown);
               }}
             >
-              <IconContext.Provider value={{ color: "#393e46" }}>
-                <AiOutlineUser className="nav__right__user__img" />
+              <IconContext.Provider value={{ color: "#8DD77F" }}>
+                <FaUserCog className="nav__right__user__img" />
               </IconContext.Provider>
 
               <span>Profile</span>

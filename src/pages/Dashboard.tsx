@@ -1,4 +1,5 @@
 // Modules
+import { IconContext } from "react-icons";
 
 // Icons
 import { AiOutlineDashboard } from "react-icons/ai";
@@ -12,7 +13,10 @@ const Dashboard = () => {
       <div className="container">
         <div className="dashboard inner">
           <div className="dashboard__head">
-            <AiOutlineDashboard className="dashboard__img" />
+            <IconContext.Provider value={{ color: "#8DD77F" }}>
+              <AiOutlineDashboard className="dashboard__img" />
+            </IconContext.Provider>
+
             <h1>Dashboard</h1>
           </div>
           <div className="dashboard__content__stats">

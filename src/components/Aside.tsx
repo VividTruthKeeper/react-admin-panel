@@ -3,14 +3,15 @@ import React from "react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
+import { IconContext } from "react-icons";
 
 // Icons
-import { BsFillFileEarmarkPostFill } from "react-icons/bs";
-import { AiOutlineBlock } from "react-icons/ai";
+import { FaBox } from "react-icons/fa";
+import { FaHive } from "react-icons/fa";
 import { MdOutlineManageAccounts } from "react-icons/md";
-import { CgDetailsLess } from "react-icons/cg";
-import { BiLogOut } from "react-icons/bi";
-import { IoIosCreate } from "react-icons/io";
+import { FaAlignLeft } from "react-icons/fa";
+import { FaSignOutAlt } from "react-icons/fa";
+import { FaSourcetree } from "react-icons/fa";
 
 // Types
 import { userContextType } from "../types/user";
@@ -25,7 +26,10 @@ const Aside = ({ aside, setAside }: Props) => {
     <aside className={aside ? "aside active" : "aside"}>
       <ul className="aside__list">
         <li className="aside__list__element aside__list__element--title">
-          <AiOutlineBlock className="aside__img" />
+          <IconContext.Provider value={{ color: "#8DD77F" }}>
+            <FaHive className="aside__img" />
+          </IconContext.Provider>
+
           <h2>Elements</h2>
         </li>
         <li className="aside__list__element">
@@ -33,21 +37,30 @@ const Aside = ({ aside, setAside }: Props) => {
             to={"/posts"}
             onClick={() => localStorage.setItem("lastLocation", "/posts")}
           >
-            <BsFillFileEarmarkPostFill className="aside__list__element__img" />
+            <IconContext.Provider value={{ color: "#8DD77F" }}>
+              <FaBox className="aside__list__element__img" />
+            </IconContext.Provider>
+
             <span>Posts</span>
           </Link>
         </li>
         <li className="aside__list__element">
           <Link
-            to={"/category"}
-            onClick={() => localStorage.setItem("lastLocation", "/category")}
+            to={"/source"}
+            onClick={() => localStorage.setItem("lastLocation", "/source")}
           >
-            <IoIosCreate className="aside__list__element__img" />
-            <span>Category</span>
+            <IconContext.Provider value={{ color: "#8DD77F" }}>
+              <FaSourcetree />
+            </IconContext.Provider>
+
+            <span>Source</span>
           </Link>
         </li>
         <li className="aside__list__element aside__list__element--title">
-          <MdOutlineManageAccounts className="aside__img" />
+          <IconContext.Provider value={{ color: "#8DD77F" }}>
+            <MdOutlineManageAccounts className="aside__img" />
+          </IconContext.Provider>
+
           <h2>Account</h2>
         </li>
         <li className="aside__list__element">
@@ -57,7 +70,10 @@ const Aside = ({ aside, setAside }: Props) => {
               localStorage.setItem("lastLocation", "/user_details")
             }
           >
-            <CgDetailsLess className="aside__list__element__img" />
+            <IconContext.Provider value={{ color: "#8DD77F" }}>
+              <FaAlignLeft className="aside__list__element__img" />
+            </IconContext.Provider>
+
             <span>Details</span>
           </Link>
         </li>
@@ -69,7 +85,9 @@ const Aside = ({ aside, setAside }: Props) => {
           }}
         >
           <div>
-            <BiLogOut className="aside__list__element__img" />
+            <IconContext.Provider value={{ color: "#8DD77F" }}>
+              <FaSignOutAlt className="aside__list__element__img" />
+            </IconContext.Provider>
             <span>Log out</span>
           </div>
         </li>

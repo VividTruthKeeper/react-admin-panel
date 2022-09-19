@@ -19,9 +19,9 @@
 
   &__form {
     min-width: 35rem;
-    background: #fff;
+    background: $light-black;
     padding: 3.5rem;
-    border: 1px solid #d9e2ef;
+    border: 1px solid $base-black;
     border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
@@ -42,7 +42,7 @@
     }
 
     &__button {
-      border-radius: 0.2rem;
+      border-radius: 0.5rem;
       cursor: pointer;
       width: 100%;
       padding: 0.6rem 1.2rem;
@@ -50,14 +50,14 @@
       font-size: 1.6rem;
 
       &--violet {
-        background-color: #7c69ef;
-        border: 0.1rem solid #7c69ef;
+        background-color: $base-blue;
+        border: 0.1rem solid $base-blue;
         @include transition-std;
 
         &:hover {
           @include transition-std;
-          background-color: #705ed6;
-          border: 0.1rem solid #705ed6;
+          background-color: $hover-blue;
+          border: 0.1rem solid $hover-blue;
         }
       }
     }
@@ -73,7 +73,6 @@
       input {
         font-size: 1.6rem;
         padding: 0.6rem 1.2rem;
-        border: 1px solid #d9e2ef;
         border-radius: 0.2rem;
       }
 

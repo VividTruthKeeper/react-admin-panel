@@ -7,19 +7,27 @@
     justify-content: flex-end;
 
     input {
+      border-radius: 0.5rem;
+      border: none !important;
       width: 5%;
       text-align: center;
       font-weight: bold;
     }
 
     button {
+      @include transition-std;
       cursor: pointer;
       font-size: 1.6rem;
       width: 15%;
       padding: 1rem 2rem;
       border-radius: 0.5rem;
-      background: #7c69ef;
+      background: $base-blue;
       color: white;
+
+      &:hover {
+        @include transition-std;
+        background: $hover-blue;
+      }
     }
   }
   &__select {
@@ -32,12 +40,12 @@
     }
 
     input {
+      background: $light-black;
+      color: $base-gray;
       font-size: 1.6rem;
       padding: 1rem 1.2rem;
-      border: 1px solid #b8b9bb;
       border-radius: 0.2rem;
       cursor: default;
-      background: #fff;
     }
 
     &__wrapper {
@@ -47,20 +55,20 @@
   }
   select {
     padding: 1rem 1.2rem;
-    border: 1px solid #b8b9bb;
+    color: $base-gray;
+    background: $light-black;
   }
 
   &.inner {
     display: flex;
     flex-direction: column;
     gap: 4rem;
-    padding-bottom: 3rem;
   }
 
   &__table {
     &__head {
       min-height: unset !important;
-      background: #dbdbdb;
+      background: $light-black;
     }
 
     th {
@@ -71,20 +79,23 @@
       font-size: 1.6rem;
       justify-self: center;
       background: transparent;
-      color: #000;
+      color: $base-gray;
       @include transition-std;
 
       &.active {
-        background: rgb(98, 98, 98);
-        color: #fff;
+        background: $light-blue;
+        color: $base-black;
         @include transition-std;
       }
     }
 
     .post-link {
-      background: #f2f0fd;
+      background: $base-black;
       &:nth-child(2n) {
-        background: #fafafa;
+        background: $light-blue;
+        td {
+          color: $light-black;
+        }
       }
     }
 
@@ -97,6 +108,7 @@
     }
 
     td {
+      color: $base-gray;
       text-align: center;
       width: 100%;
       overflow: hidden;

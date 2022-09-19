@@ -9,6 +9,8 @@ import "./assets/styles/style.scss";
 
 // Types
 import { PostType } from "./types/posts";
+import { SourceType } from "./types/sources";
+import { LinksAll } from "./types/links";
 
 // Pages
 import Login from "./pages/Login";
@@ -18,6 +20,10 @@ import Posts from "./pages/Posts";
 import Details from "./pages/Details";
 import Post from "./pages/Post";
 import Source from "./pages/Source";
+import EditSource from "./pages/EditSource";
+
+// Helpers
+import { getLinks } from "./helpers/apiRequests";
 
 const App = () => {
   const navigate = useNavigate();
@@ -35,6 +41,8 @@ const App = () => {
     },
   ]);
 
+  const [sources, setSources] = useState<SourceType[]>();
+
   const [user, setUser] = useState({
     username: "",
     accessLevel: "",
@@ -49,6 +57,10 @@ const App = () => {
 
   const userValue = useMemo(() => ({ user, setUser }), [user, setUser]);
   const postValue = useMemo(() => ({ posts, setPosts }), [posts, setPosts]);
+  const sourceValue = useMemo(
+    () => ({ sources, setSources }),
+    [sources, setSources]
+  );
 
   useEffect(() => {
     if (!user.username) {
@@ -59,8 +71,12 @@ const App = () => {
     }
   }, [user]);
 
+  useEffect(() => {
+    getLinks(setSources);
+  }, []);
+
   return (
-    <PostContext.Provider value={postValue}>
+    <PostContext.Provider value={{ postValue, sourceValue }}>
       <UserContext.Provider value={userValue}>
         <div className="App">
           <Routes>
@@ -68,7 +84,12 @@ const App = () => {
             <Route path="/dashboard" element={<Main child={<Dashboard />} />} />
             <Route path="/posts" element={<Main child={<Posts />} />} />
             <Route path="/source" element={<Main child={<Source />} />} />
+            <Route
+              path="/source/edit/:id"
+              element={<Main child={<EditSource />} />}
+            />
             <Route path="/posts/:id" element={<Main child={<Post />} />} />
+
             <Route
               path="/user_details"
               element={<Main child={<Details />} />}

@@ -22,7 +22,6 @@
       padding: 1rem 2rem;
       border-radius: 0.5rem;
       background: $base-blue;
-      color: white;
 
       &:hover {
         @include transition-std;
@@ -46,6 +45,7 @@
       padding: 1rem 1.2rem;
       border-radius: 0.2rem;
       cursor: default;
+      border-radius: 0.5rem;
     }
 
     &__wrapper {
@@ -57,6 +57,7 @@
     padding: 1rem 1.2rem;
     color: $base-gray;
     background: $light-black;
+    border-radius: 0.5rem;
   }
 
   &.inner {
@@ -168,42 +169,37 @@
       display: flex;
       align-items: center;
       gap: 1rem;
-      max-width: 30rem;
+
       border-radius: 0.2rem;
       cursor: pointer;
       width: 100%;
-      padding: 0.6rem 1.2rem;
-      color: #fff;
+      padding: 1rem 1.2rem;
+      color: $base-gray;
       font-size: 1.6rem;
-      background-color: #7c69ef;
-      border: 0.1rem solid #7c69ef;
+      background-color: $base-blue;
+
       @include transition-std;
       &:hover {
         @include transition-std;
-        background-color: #705ed6;
-        border: 0.1rem solid #705ed6;
+        background-color: $hover-blue;
       }
     }
 
     input {
       font-size: 1.6rem;
-      padding: 1rem 1.2rem;
-      border: 1px solid #b8b9bb;
-      border-radius: 0.2rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 0.5rem;
       cursor: default;
-      background: #ebedef;
+      background: $light-black;
     }
 
     textarea {
-      background: #ebedef;
+      background: $light-black;
       cursor: default;
-      padding: 1rem 1.2rem;
+      padding: 0.6rem 1.2rem;
       resize: none;
-      outline: none;
       font-size: 1.6rem;
-
-      border: 1px solid #b8b9bb;
-      border-radius: 0.2rem;
+      border-radius: 0.5rem;
     }
 
     &__block {

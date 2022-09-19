@@ -7,7 +7,7 @@ import { IconContext } from "react-icons";
 // Icons
 import { FaMeteor } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { FaUserCog } from "react-icons/fa";
+import { FaUserAlt } from "react-icons/fa";
 
 // Types
 import { userContextType } from "../types/user";
@@ -52,7 +52,7 @@ const Nav = ({ aside, setAside }: Props) => {
               }}
             >
               <IconContext.Provider value={{ color: "#8DD77F" }}>
-                <FaUserCog className="nav__right__user__img" />
+                <FaUserAlt className="nav__right__user__img" />
               </IconContext.Provider>
 
               <span>Profile</span>

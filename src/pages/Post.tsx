@@ -3,14 +3,18 @@ import { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { PostContext } from "../context/PostContext";
 import { PostType } from "../types/posts";
+import { IconContext } from "react-icons";
 
 // Icons
-import { ImNewspaper } from "react-icons/im";
+import { FaBoxOpen } from "react-icons/fa";
 import { BiLinkExternal } from "react-icons/bi";
 
 // Helpers
 import { parseDate } from "../helpers/parseDate";
 import { capitalizeFirstLetter } from "../helpers/stringMethods";
+
+// Types
+import { ContextType } from "../types/context";
 
 const Post = () => {
   const date = new Date("0.0.0000");
@@ -24,7 +28,7 @@ const Post = () => {
     createdAt: date,
     updatedAt: date,
   });
-  const { posts } = useContext<any>(PostContext);
+  const { posts } = useContext<ContextType>(PostContext).postValue;
   const { id } = useParams();
 
   useEffect(() => {
@@ -41,7 +45,9 @@ const Post = () => {
       <div className="container">
         <div className="post inner">
           <div className="dashboard__head post__head">
-            <ImNewspaper />
+            <IconContext.Provider value={{ color: "#8DD77F" }}>
+              <FaBoxOpen className="dashboard__img" />
+            </IconContext.Provider>
             <h1 className="post__head">
               {postData.id !== -1 ? postData.title : ""}
             </h1>
@@ -97,7 +103,10 @@ const Post = () => {
               className="post__content__btn"
               href={postData.id !== -1 ? postData.link : ""}
             >
-              <BiLinkExternal />
+              <IconContext.Provider value={{ color: "#FFFFFF" }}>
+                <BiLinkExternal />
+              </IconContext.Provider>
+
               <span>Link</span>
             </a>
           </div>

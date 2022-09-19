@@ -1,61 +1,34 @@
 // Modules
 import { v4 as uuidv4 } from "uuid";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { IconContext } from "react-icons";
 import { Link } from "react-router-dom";
+
+// Context
+import { PostContext } from "../context/PostContext";
 
 // Icons
 import { FaSourcetree } from "react-icons/fa";
 import { FaRegEdit } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
-import { getLinks } from "../helpers/apiRequests";
 
 // Helpers
-import { deleteLink } from "../helpers/apiRequests";
+import { deleteLink, getLinks } from "../helpers/apiRequests";
 
 // Types
 import { LinksAll } from "../types/links";
-// interface dataType {
-//   createName: string;
-//   createLink: string;
-//   delete: number;
-//   updateId: number;
-//   updateName: string;
-//   updateLink: string;
-// }
-// interface successType {
-//   create: string;
-//   delete: string;
-//   update: string;
-//   hasCreateUpdated: boolean;
-//   hasDeleteUpdated: boolean;
-//   hasUpdateUpdated: boolean;
-// }
+import { ContextType } from "../types/context";
 
 const Source = () => {
-  const defaultDate = new Date("00-00-00");
-
+  const { sources, setSources } =
+    useContext<ContextType>(PostContext).sourceValue;
   const [deleted, setDeleted] = useState<boolean>(false);
-
-  const [all, setAll] = useState<LinksAll[]>([
-    {
-      id: -1,
-      name: "",
-      source: "",
-      createdAt: defaultDate,
-      updatedAt: defaultDate,
-    },
-  ]);
-
-  useEffect(() => {
-    getLinks(setAll);
-  }, []);
 
   useEffect(() => {
     if (deleted) {
       setTimeout(() => {
         setDeleted(false);
-        getLinks(setAll);
+        getLinks(setSources);
       }, 2000);
     }
   }, [deleted, setDeleted]);
@@ -82,8 +55,8 @@ const Source = () => {
                 </tr>
               </thead>
               <tbody>
-                {all[0].id !== -1 ? (
-                  all.map((source: LinksAll) => {
+                {sources ? (
+                  sources.map((source: LinksAll) => {
                     return (
                       <tr key={uuidv4()}>
                         <td>{source.id}</td>

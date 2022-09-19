@@ -16,7 +16,7 @@ import { parseDate } from "../helpers/parseDate";
 
 // Types
 import { paramsType } from "../types/posts";
-
+import { ContextType } from "../types/context";
 interface pageType {
   perPage: number;
   pageNumber: number;
@@ -24,7 +24,8 @@ interface pageType {
 
 const Posts = () => {
   const [categories, setCategories] = useState<string[]>(["All"]);
-  const { posts, setPosts } = useContext<any>(PostContext);
+  const contextValue: ContextType = useContext<ContextType>(PostContext);
+  const { posts, setPosts } = contextValue.postValue;
   const [category, setCategory] = useState<string>("All");
   const [sort, setSort] = useState<string>("id");
   const [page, setPage] = useState<pageType>({
@@ -309,7 +310,7 @@ const Posts = () => {
             </button>
             <input type="text" value={page.pageNumber} readOnly />
             <button
-              disabled={posts[0] ? false : true}
+              disabled={posts ? false : true}
               type="button"
               onClick={() =>
                 setPage({ ...page, pageNumber: page.pageNumber + 1 })

@@ -1,0 +1,58 @@
+.source-edit {
+  &.inner {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  &__content {
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
+    }
+  }
+
+  &__info,
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding: 1rem;
+
+    h2 {
+      font-weight: normal;
+      font-size: 3rem;
+    }
+  }
+
+  &__input {
+    color: $base-gray;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    font-size: 1.6rem;
+
+    input {
+      font-size: 1.6rem;
+      background: $light-black;
+      padding: 0.6rem 1.2rem;
+      border-radius: 0.5rem;
+    }
+  }
+
+  &__submit {
+    font-size: 1.6rem;
+    cursor: pointer;
+    color: $base-gray;
+    border-radius: 0.5rem;
+    background: $base-blue;
+    @include transition-std;
+    padding: 1.6rem 1.2rem;
+
+    &:hover {
+      @include transition-std;
+      background: $hover-blue;
+    }
+  }
+}

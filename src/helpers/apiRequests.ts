@@ -61,7 +61,7 @@ export const updateLink = (
   data: { name: string; source: string }
 ) => {
   axios
-    .put(`http://95.85.124.41:8080/link/update/${id}`, { source: data.source })
+    .put(`http://95.85.124.41:8080/link/update/${id}`, data)
     .then((res) => {
       setSuccess(res.data.message);
     })

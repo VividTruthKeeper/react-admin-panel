@@ -10,6 +10,10 @@ import "./assets/styles/style.scss";
 // Types
 import { PostType } from "./types/posts";
 import { SourceType } from "./types/sources";
+import { PopupType } from "./types/popup";
+
+// Components
+import Popup from "./components/Popup";
 
 // Pages
 import Login from "./pages/Login";
@@ -27,8 +31,12 @@ import { getLinks } from "./helpers/apiRequests";
 
 const App = () => {
   const navigate = useNavigate();
-  const date = new Date("0.0.0000");
   const [posts, setPosts] = useState<PostType[]>();
+  const [popup, setPopup] = useState<PopupType>({
+    message: "Link created successfully",
+    pop: false,
+    remove: false,
+  });
 
   const [sources, setSources] = useState<SourceType[]>();
 
@@ -46,6 +54,7 @@ const App = () => {
 
   const userValue = useMemo(() => ({ user, setUser }), [user, setUser]);
   const postValue = useMemo(() => ({ posts, setPosts }), [posts, setPosts]);
+  const popupValue = useMemo(() => ({ popup, setPopup }), [popup, setPopup]);
   const sourceValue = useMemo(
     () => ({ sources, setSources }),
     [sources, setSources]
@@ -65,9 +74,10 @@ const App = () => {
   }, []);
 
   return (
-    <PostContext.Provider value={{ postValue, sourceValue }}>
+    <PostContext.Provider value={{ postValue, sourceValue, popupValue }}>
       <UserContext.Provider value={userValue}>
         <div className="App">
+          <Popup />
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/dashboard" element={<Main child={<Dashboard />} />} />

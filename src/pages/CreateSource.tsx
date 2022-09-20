@@ -1,5 +1,5 @@
 // Modules
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { IconContext } from "react-icons";
 import { useNavigate } from "react-router-dom";
 import { ContextType } from "../types/context";
@@ -14,6 +14,7 @@ import { SourceEditDataType } from "../types/sources";
 
 const CreateSource = () => {
   const { setSources } = useContext<ContextType>(PostContext).sourceValue;
+  const { popup, setPopup } = useContext<ContextType>(PostContext).popupValue;
   const navigate = useNavigate();
   const [data, setData] = useState<SourceEditDataType>({
     name: "",
@@ -64,10 +65,13 @@ const CreateSource = () => {
               className="source-edit__submit"
               onClick={() => {
                 createLink(() => {}, data);
+                setPopup({ ...popup, pop: true });
+
                 setTimeout(() => {
-                  navigate("/source");
+                  // navigate("/source");
                   getLinks(setSources);
                 }, 2000);
+                setTimeout(() => setPopup({ ...popup, remove: true }), 2000);
               }}
             >
               Create new source

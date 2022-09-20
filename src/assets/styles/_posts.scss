@@ -17,6 +17,7 @@
     button {
       @include transition-std;
       cursor: pointer;
+      color: $base-gray;
       font-size: 1.6rem;
       width: 15%;
       padding: 1rem 2rem;
@@ -35,6 +36,9 @@
     gap: 0.8rem;
 
     label {
+      display: flex;
+
+      gap: 0.8rem;
       font-size: 1.4rem;
     }
 
@@ -67,6 +71,10 @@
   }
 
   &__table {
+    &.disabled {
+      pointer-events: none;
+    }
+
     &__head {
       min-height: unset !important;
       background: $light-black;
@@ -96,6 +104,10 @@
         background: $light-blue;
         td {
           color: $light-black;
+
+          svg {
+            fill: $base-black;
+          }
         }
       }
     }
@@ -133,8 +145,10 @@
     }
 
     tbody {
-      max-height: 70vh;
-      overflow-y: auto;
+      min-height: 20rem;
+      position: relative;
+      // max-height: 70vh;
+      // overflow-y: auto;
       display: flex;
       flex-direction: column;
     }
@@ -209,6 +223,80 @@
 
       h4 {
         font-size: 1.6rem;
+      }
+    }
+
+    &__table {
+      thead {
+        tr {
+          min-height: unset !important;
+          background: $light-black;
+        }
+      }
+
+      th {
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        font-size: 1.6rem;
+        justify-self: center;
+        background: transparent;
+        color: $base-gray;
+        @include transition-std;
+      }
+
+      tr {
+        background: $base-black;
+        &:nth-child(2n) {
+          background: $light-blue;
+          td {
+            color: $light-black;
+
+            svg {
+              fill: $base-black;
+            }
+          }
+        }
+      }
+
+      tr {
+        min-height: 7rem;
+        padding: 1rem;
+        display: grid;
+        grid-template-columns: 1fr repeat(4, 2fr);
+        gap: 1rem;
+      }
+
+      td {
+        color: $base-gray;
+        text-align: center;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        justify-self: center;
+        font-size: 1.2rem;
+        align-self: center;
+
+        a {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        svg {
+          width: 2rem;
+          height: 2rem;
+        }
+      }
+
+      tbody {
+        min-height: 20rem;
+        position: relative;
+        display: flex;
+        flex-direction: column;
       }
     }
   }

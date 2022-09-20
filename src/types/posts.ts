@@ -1,3 +1,10 @@
+export interface HistoryList {
+  old_published_at: Date;
+  new_published_at: Date;
+  PostID: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
 export interface PostType {
   id: number;
   category: string;
@@ -7,11 +14,12 @@ export interface PostType {
   summary: string;
   createdAt: Date;
   updatedAt: Date;
+  HistoryList: HistoryList[];
 }
 
 export interface paramsType {
   id: "asc" | "desc";
-  category: "asc" | "desc";
+  source: "asc" | "desc";
   title: "asc" | "desc";
   link: "asc" | "desc";
   date: "asc" | "desc";

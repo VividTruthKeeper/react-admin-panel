@@ -17,24 +17,31 @@ import { parseDate } from "../helpers/parseDate";
 // Types
 import { paramsType } from "../types/posts";
 import { ContextType } from "../types/context";
+
+// Components
+import Loader from "../components/Loader";
+
 interface pageType {
   perPage: number;
   pageNumber: number;
 }
 
 const Posts = () => {
-  const [categories, setCategories] = useState<string[]>(["All"]);
+  const [load, setLoad] = useState<boolean>(false);
   const contextValue: ContextType = useContext<ContextType>(PostContext);
   const { posts, setPosts } = contextValue.postValue;
+  const { sources } = contextValue.sourceValue;
+  const [showAll, setShowAll] = useState<boolean>(true);
   const [category, setCategory] = useState<string>("All");
   const [sort, setSort] = useState<string>("id");
   const [page, setPage] = useState<pageType>({
     perPage: 10,
     pageNumber: 1,
   });
+
   const [params, setParams] = useState<paramsType>({
     id: "asc",
-    category: "asc",
+    source: "asc",
     title: "asc",
     link: "asc",
     date: "asc",
@@ -47,29 +54,17 @@ const Posts = () => {
   useEffect(() => {
     const key = sort as keyof typeof params;
     getPosts(
+      setLoad,
       setPosts,
       `?sortBy=${sort}.${params[key]}&strLimit=${page.perPage}&strOffset=${page.pageNumber}&filter=${search}`
     );
-  }, [params, sort, page, search, category]);
+  }, [params, sort, page, search]);
 
   useEffect(() => {
-    const categoriesTemp: string[] = categories;
-    if (posts[0]) {
-      if (posts[0].id !== -1) {
-        posts.map((post: PostType) => categoriesTemp.push(post.category));
-        let categoriesTempUnique = categoriesTemp.filter((element, index) => {
-          return categoriesTemp.indexOf(element) === index;
-        });
-        setCategories(categoriesTempUnique);
-      }
+    if (!showAll) {
+      setPage({ ...page, perPage: 60 });
     }
-  }, [posts]);
-
-  useEffect(() => {
-    if (category !== "All") {
-      setPage({ ...page, perPage: 100 });
-    }
-  }, [category, page.perPage]);
+  }, [showAll, page.perPage]);
 
   return (
     <main className="posts">
@@ -85,34 +80,40 @@ const Posts = () => {
             <div className="posts__select">
               <label htmlFor="category">Source</label>
               <select
+                disabled={showAll}
                 id="category"
                 value={category}
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                   setCategory(e.target.value);
                 }}
               >
-                {categories.map((category) => {
-                  if (category === "All") {
-                    return (
-                      <option key={uuidv4()} value={category} defaultChecked>
-                        {category}
-                      </option>
-                    );
-                  } else {
-                    return (
-                      <option key={uuidv4()} value={category}>
-                        {category}
-                      </option>
-                    );
-                  }
-                })}
+                {sources
+                  ? sources.map((source) => {
+                      return (
+                        <option key={uuidv4()} value={source.name}>
+                          {source.name}
+                        </option>
+                      );
+                    })
+                  : ""}
               </select>
+              <label>
+                <span>Show all</span>
+                <input
+                  type="checkbox"
+                  defaultChecked
+                  value={showAll.toString()}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    setShowAll(e.target.checked)
+                  }
+                />
+              </label>
             </div>
             <div className="posts__select">
               <label htmlFor="pp">Per page</label>
               <select
+                disabled={!showAll}
                 id="pp"
-                disabled={category !== "All"}
                 value={page.perPage}
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                   setPage({ ...page, perPage: parseInt(e.target.value) });
@@ -142,7 +143,7 @@ const Posts = () => {
               />
             </div>
           </div>
-          <table className="posts__table">
+          <table className={load ? "posts__table disabled" : "posts__table"}>
             <thead>
               <tr className="posts__table__head">
                 <th
@@ -159,10 +160,10 @@ const Posts = () => {
                 <th
                   className={sort === "category" ? "active" : ""}
                   onClick={() => {
-                    setSort("category");
-                    if (params.category !== "asc")
-                      setParams({ ...params, category: "asc" });
-                    else setParams({ ...params, category: "desc" });
+                    setSort("source");
+                    if (params.source !== "asc")
+                      setParams({ ...params, source: "asc" });
+                    else setParams({ ...params, source: "desc" });
                   }}
                 >
                   Source
@@ -225,9 +226,10 @@ const Posts = () => {
               </tr>
             </thead>
             <tbody>
+              {load ? <Loader /> : null}
               {posts[0] ? (
                 posts[0].id !== -1 ? (
-                  category === "All" ? (
+                  showAll ? (
                     posts.map((post: PostType) => {
                       return (
                         <Link

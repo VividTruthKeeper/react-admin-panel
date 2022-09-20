@@ -7,15 +7,18 @@ import { PostType } from "../types/posts";
 import { LinksAll } from "../types/links";
 
 export const getPosts = (
+  setLoad: React.Dispatch<boolean>,
   setPosts: React.Dispatch<PostType[]>,
   params?: string
 ) => {
+  setLoad(true);
   axios
     .get("http://95.85.124.41:8080/posts" + (params ? params : ""))
     .then((res) => {
       setPosts(res.data.data);
     })
-    .catch((err) => {});
+    .catch((err) => {})
+    .finally(() => setLoad(false));
 };
 
 export const deleteLink = (setSuccess: React.Dispatch<boolean>, id: number) => {

@@ -1,8 +1,9 @@
 // Modules
+import { v4 as uuidv4 } from "uuid";
 import { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { PostContext } from "../context/PostContext";
-import { PostType } from "../types/posts";
+import { HistoryList, PostType } from "../types/posts";
 import { IconContext } from "react-icons";
 
 // Icons
@@ -18,16 +19,7 @@ import { ContextType } from "../types/context";
 
 const Post = () => {
   const date = new Date("0.0.0000");
-  const [postData, setPostData] = useState<PostType>({
-    id: -1,
-    category: "",
-    title: "",
-    link: "",
-    publish_date: date,
-    summary: "",
-    createdAt: date,
-    updatedAt: date,
-  });
+  const [postData, setPostData] = useState<PostType>();
   const { posts } = useContext<ContextType>(PostContext).postValue;
   const { id } = useParams();
 
@@ -48,18 +40,12 @@ const Post = () => {
             <IconContext.Provider value={{ color: "#8DD77F" }}>
               <FaBoxOpen className="dashboard__img" />
             </IconContext.Provider>
-            <h1 className="post__head">
-              {postData.id !== -1 ? postData.title : ""}
-            </h1>
+            <h1 className="post__head">{postData ? postData.title : ""}</h1>
           </div>
           <div className="post__content">
             <div className="post__content__block">
               <h4>ID</h4>
-              <input
-                type="text"
-                readOnly
-                value={postData.id !== -1 ? postData.id : ""}
-              />
+              <input type="text" readOnly value={postData ? postData.id : ""} />
             </div>
             <div className="post__content__block">
               <h4>Category</h4>
@@ -67,7 +53,7 @@ const Post = () => {
                 type="text"
                 readOnly
                 value={
-                  postData.id !== -1
+                  postData
                     ? capitalizeFirstLetter(postData.category.toLowerCase())
                     : ""
                 }
@@ -78,7 +64,7 @@ const Post = () => {
               <input
                 type="text"
                 readOnly
-                value={postData.id !== -1 ? postData.title : ""}
+                value={postData ? postData.title : ""}
               />
             </div>
             <div className="post__content__block">
@@ -86,9 +72,7 @@ const Post = () => {
               <input
                 type={"text"}
                 readOnly
-                value={
-                  postData.id !== -1 ? parseDate(postData.publish_date)[0] : ""
-                }
+                value={postData ? parseDate(postData.publish_date)[0] : ""}
               />
             </div>
             <div className="post__content__block">
@@ -96,12 +80,12 @@ const Post = () => {
               <textarea
                 readOnly
                 rows={5}
-                value={postData.id !== -1 ? postData.summary : ""}
+                value={postData ? postData.summary : ""}
               ></textarea>
             </div>
             <a
               className="post__content__btn"
-              href={postData.id !== -1 ? postData.link : ""}
+              href={postData ? postData.link : ""}
             >
               <IconContext.Provider value={{ color: "#FFFFFF" }}>
                 <BiLinkExternal />
@@ -109,6 +93,49 @@ const Post = () => {
 
               <span>Link</span>
             </a>
+            {postData ? (
+              postData.HistoryList.length > 0 ? (
+                <div className="post__content__block post__content__table">
+                  <h2>History List</h2>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Post ID</th>
+                        <th>Old published</th>
+                        <th>New published</th>
+                        <th>Created</th>
+                        <th>Updated</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {postData
+                        ? postData.HistoryList.length > 0
+                          ? postData.HistoryList.map((History: HistoryList) => {
+                              return (
+                                <tr key={uuidv4()}>
+                                  <td>{History.PostID}</td>
+                                  <td>
+                                    {parseDate(History.old_published_at)[0]}
+                                  </td>
+                                  <td>
+                                    {parseDate(History.new_published_at)[0]}
+                                  </td>
+                                  <td>{parseDate(History.createdAt)[0]}</td>
+                                  <td>{parseDate(History.updatedAt)[0]}</td>
+                                </tr>
+                              );
+                            })
+                          : ""
+                        : ""}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                ""
+              )
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </div>

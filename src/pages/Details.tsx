@@ -1,9 +1,10 @@
 // Modules
 import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../context/UserContext";
+import { IconContext } from "react-icons";
 
 // Icons
-import { CgDetailsLess } from "react-icons/cg";
+import { FaAlignLeft } from "react-icons/fa";
 import { userContextType } from "../types/user";
 
 const Details = () => {
@@ -14,7 +15,10 @@ const Details = () => {
       <div className="container">
         <div className="details inner">
           <div className="dashboard__head">
-            <CgDetailsLess className="dashboard__img" />
+            <IconContext.Provider value={{ color: "#8DD77F" }}>
+              <FaAlignLeft className="dashboard__img" />
+            </IconContext.Provider>
+
             <h1>Details</h1>
           </div>
           <div className="details__content">

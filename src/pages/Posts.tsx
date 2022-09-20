@@ -227,7 +227,7 @@ const Posts = () => {
             </thead>
             <tbody>
               {load ? <Loader /> : null}
-              {posts[0] ? (
+              {posts ? (
                 posts[0].id !== -1 ? (
                   showAll ? (
                     posts.map((post: PostType) => {

@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { PostContext } from "../context/PostContext";
 
 // Icons
+import { FaRegPlusSquare } from "react-icons/fa";
 import { FaSourcetree } from "react-icons/fa";
 import { FaRegEdit } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
@@ -103,6 +104,10 @@ const Source = () => {
               </tbody>
             </table>
           </div>
+          <Link to="/source/create" className="source__link">
+            <FaRegPlusSquare />
+            <span>Create source</span>
+          </Link>
         </div>
       </div>
     </main>

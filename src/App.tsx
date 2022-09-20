@@ -10,7 +10,6 @@ import "./assets/styles/style.scss";
 // Types
 import { PostType } from "./types/posts";
 import { SourceType } from "./types/sources";
-import { LinksAll } from "./types/links";
 
 // Pages
 import Login from "./pages/Login";
@@ -21,6 +20,7 @@ import Details from "./pages/Details";
 import Post from "./pages/Post";
 import Source from "./pages/Source";
 import EditSource from "./pages/EditSource";
+import CreateSource from "./pages/CreateSource";
 
 // Helpers
 import { getLinks } from "./helpers/apiRequests";
@@ -28,18 +28,7 @@ import { getLinks } from "./helpers/apiRequests";
 const App = () => {
   const navigate = useNavigate();
   const date = new Date("0.0.0000");
-  const [posts, setPosts] = useState<PostType[]>([
-    {
-      id: -1,
-      category: "",
-      title: "",
-      link: "",
-      publish_date: date,
-      summary: "",
-      createdAt: date,
-      updatedAt: date,
-    },
-  ]);
+  const [posts, setPosts] = useState<PostType[]>();
 
   const [sources, setSources] = useState<SourceType[]>();
 
@@ -89,6 +78,10 @@ const App = () => {
               element={<Main child={<EditSource />} />}
             />
             <Route path="/posts/:id" element={<Main child={<Post />} />} />
+            <Route
+              path="/source/create"
+              element={<Main child={<CreateSource />} />}
+            />
 
             <Route
               path="/user_details"

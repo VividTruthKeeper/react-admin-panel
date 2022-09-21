@@ -12,6 +12,8 @@ import { MdOutlineManageAccounts } from "react-icons/md";
 import { FaAlignLeft } from "react-icons/fa";
 import { FaSignOutAlt } from "react-icons/fa";
 import { FaSourcetree } from "react-icons/fa";
+import { FaLink } from "react-icons/fa";
+import { FaRegPlusSquare } from "react-icons/fa";
 
 // Types
 import { userContextType } from "../types/user";
@@ -44,16 +46,32 @@ const Aside = ({ aside, setAside }: Props) => {
             <span>Posts</span>
           </Link>
         </li>
+        <li className="aside__list__element aside__list__element--title">
+          <IconContext.Provider value={{ color: "#8DD77F" }}>
+            <FaSourcetree />
+          </IconContext.Provider>
+
+          <h2>Source</h2>
+        </li>
         <li className="aside__list__element">
           <Link
             to={"/source"}
             onClick={() => localStorage.setItem("lastLocation", "/source")}
           >
             <IconContext.Provider value={{ color: "#8DD77F" }}>
-              <FaSourcetree />
+              <FaLink className="aside__list__element__img" />
             </IconContext.Provider>
 
             <span>Source</span>
+          </Link>
+        </li>
+        <li className="aside__list__element">
+          <Link to={"/source/create"}>
+            <IconContext.Provider value={{ color: "#8DD77F" }}>
+              <FaRegPlusSquare className="aside__list__element__img" />
+            </IconContext.Provider>
+
+            <span>Create source</span>
           </Link>
         </li>
         <li className="aside__list__element aside__list__element--title">

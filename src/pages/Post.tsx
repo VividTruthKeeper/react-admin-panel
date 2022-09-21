@@ -18,18 +18,19 @@ import { capitalizeFirstLetter } from "../helpers/stringMethods";
 import { ContextType } from "../types/context";
 
 const Post = () => {
-  const date = new Date("0.0.0000");
   const [postData, setPostData] = useState<PostType>();
   const { posts } = useContext<ContextType>(PostContext).postValue;
   const { id } = useParams();
 
   useEffect(() => {
-    if (posts[0].id !== -1) {
-      posts.map((post: PostType) => {
-        if (post.id.toString() === id) {
-          setPostData(post);
-        }
-      });
+    if (posts) {
+      if (posts[0].id !== -1) {
+        posts.map((post: PostType) => {
+          if (post.id.toString() === id) {
+            setPostData(post);
+          }
+        });
+      }
     }
   }, [posts]);
   return (

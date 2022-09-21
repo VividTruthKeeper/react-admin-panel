@@ -15,7 +15,7 @@ import { SourceEditDataType } from "../types/sources";
 const CreateSource = () => {
   const { setSources } = useContext<ContextType>(PostContext).sourceValue;
   const { popup, setPopup } = useContext<ContextType>(PostContext).popupValue;
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [data, setData] = useState<SourceEditDataType>({
     name: "",
     source: "",
@@ -28,7 +28,7 @@ const CreateSource = () => {
             <IconContext.Provider value={{ color: "#8DD77F" }}>
               <FaRegPlusSquare />
             </IconContext.Provider>
-            <h1>Source</h1>
+            <h1>Create source</h1>
           </div>
 
           <form
@@ -62,6 +62,7 @@ const CreateSource = () => {
               />
             </div>
             <button
+              disabled={!(data.name.length > 0 && data.source.length > 0)}
               className="source-edit__submit"
               onClick={() => {
                 createLink(() => {}, data);

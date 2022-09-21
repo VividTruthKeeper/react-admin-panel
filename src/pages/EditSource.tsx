@@ -110,6 +110,7 @@ const EditSource = () => {
                 </div>
               </div>
               <button
+                disabled={!(data.name.length > 0 && data.source.length > 0)}
                 className="source-edit__submit"
                 onClick={() => {
                   updateLink(() => {}, id ? parseInt(id) : 0, data);

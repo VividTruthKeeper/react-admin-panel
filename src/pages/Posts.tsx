@@ -5,6 +5,8 @@ import { PostContext } from "../context/PostContext";
 import { IconContext } from "react-icons";
 
 // Icons
+import { FaArrowUp } from "react-icons/fa";
+import { FaArrowDown } from "react-icons/fa";
 import { FaBox } from "react-icons/fa";
 import { BiLinkExternal } from "react-icons/bi";
 
@@ -31,8 +33,7 @@ const Posts = () => {
   const contextValue: ContextType = useContext<ContextType>(PostContext);
   const { posts, setPosts } = contextValue.postValue;
   const { sources } = contextValue.sourceValue;
-  const [showAll, setShowAll] = useState<boolean>(true);
-  const [category, setCategory] = useState<string>("All");
+  const [category, setCategory] = useState<string>("");
   const [sort, setSort] = useState<string>("id");
   const [page, setPage] = useState<pageType>({
     perPage: 10,
@@ -41,7 +42,6 @@ const Posts = () => {
 
   const [params, setParams] = useState<paramsType>({
     id: "asc",
-    source: "asc",
     title: "asc",
     link: "asc",
     date: "asc",
@@ -56,15 +56,9 @@ const Posts = () => {
     getPosts(
       setLoad,
       setPosts,
-      `?sortBy=${sort}.${params[key]}&strLimit=${page.perPage}&strOffset=${page.pageNumber}&filter=${search}`
+      `?sortBy=${sort}.${params[key]}&category=${category}&strLimit=${page.perPage}&strOffset=${page.pageNumber}&filter=${search}`
     );
-  }, [params, sort, page, search]);
-
-  useEffect(() => {
-    if (!showAll) {
-      setPage({ ...page, perPage: 60 });
-    }
-  }, [showAll, page.perPage]);
+  }, [params, sort, page, search, category]);
 
   return (
     <main className="posts">
@@ -80,13 +74,19 @@ const Posts = () => {
             <div className="posts__select">
               <label htmlFor="category">Source</label>
               <select
-                disabled={showAll}
                 id="category"
                 value={category}
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-                  setCategory(e.target.value);
+                  if (e.target.value === "All") {
+                    setCategory("");
+                  } else {
+                    setCategory(e.target.value);
+                  }
                 }}
               >
+                <option value="All" defaultChecked>
+                  All
+                </option>
                 {sources
                   ? sources.map((source) => {
                       return (
@@ -97,22 +97,10 @@ const Posts = () => {
                     })
                   : ""}
               </select>
-              <label>
-                <span>Show all</span>
-                <input
-                  type="checkbox"
-                  defaultChecked
-                  value={showAll.toString()}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setShowAll(e.target.checked)
-                  }
-                />
-              </label>
             </div>
             <div className="posts__select">
               <label htmlFor="pp">Per page</label>
               <select
-                disabled={!showAll}
                 id="pp"
                 value={page.perPage}
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -155,18 +143,20 @@ const Posts = () => {
                     else setParams({ ...params, id: "desc" });
                   }}
                 >
-                  ID
+                  {sort === "id" && params.id === "asc" ? (
+                    <IconContext.Provider value={{ color: "#00785a" }}>
+                      <FaArrowUp />
+                    </IconContext.Provider>
+                  ) : null}
+                  {sort === "id" && params.id === "desc" ? (
+                    <IconContext.Provider value={{ color: "#00785a" }}>
+                      <FaArrowDown />
+                    </IconContext.Provider>
+                  ) : null}
+                  <span>ID</span>
                 </th>
-                <th
-                  className={sort === "category" ? "active" : ""}
-                  onClick={() => {
-                    setSort("source");
-                    if (params.source !== "asc")
-                      setParams({ ...params, source: "asc" });
-                    else setParams({ ...params, source: "desc" });
-                  }}
-                >
-                  Source
+                <th className={sort === "category" ? "active" : ""}>
+                  <span>Source</span>
                 </th>
                 <th
                   className={sort === "title" ? "active" : ""}
@@ -177,7 +167,17 @@ const Posts = () => {
                     else setParams({ ...params, title: "desc" });
                   }}
                 >
-                  Title
+                  {sort === "title" && params.title === "asc" ? (
+                    <IconContext.Provider value={{ color: "#00785a" }}>
+                      <FaArrowUp />
+                    </IconContext.Provider>
+                  ) : null}
+                  {sort === "title" && params.title === "desc" ? (
+                    <IconContext.Provider value={{ color: "#00785a" }}>
+                      <FaArrowDown />
+                    </IconContext.Provider>
+                  ) : null}
+                  <span>Title</span>
                 </th>
                 <th
                   className={sort === "link" ? "active" : ""}
@@ -188,7 +188,17 @@ const Posts = () => {
                     else setParams({ ...params, link: "desc" });
                   }}
                 >
-                  Link
+                  {sort === "link" && params.link === "asc" ? (
+                    <IconContext.Provider value={{ color: "#00785a" }}>
+                      <FaArrowUp />
+                    </IconContext.Provider>
+                  ) : null}
+                  {sort === "link" && params.link === "desc" ? (
+                    <IconContext.Provider value={{ color: "#00785a" }}>
+                      <FaArrowDown />
+                    </IconContext.Provider>
+                  ) : null}
+                  <span>Link</span>
                 </th>
                 <th
                   className={sort === "published" ? "active" : ""}
@@ -199,7 +209,17 @@ const Posts = () => {
                     else setParams({ ...params, published: "desc" });
                   }}
                 >
-                  Published
+                  {sort === "published" && params.published === "asc" ? (
+                    <IconContext.Provider value={{ color: "#00785a" }}>
+                      <FaArrowUp />
+                    </IconContext.Provider>
+                  ) : null}
+                  {sort === "published" && params.published === "desc" ? (
+                    <IconContext.Provider value={{ color: "#00785a" }}>
+                      <FaArrowDown />
+                    </IconContext.Provider>
+                  ) : null}
+                  <span>Published</span>
                 </th>
                 <th
                   className={sort === "created" ? "active" : ""}
@@ -210,7 +230,17 @@ const Posts = () => {
                     else setParams({ ...params, created: "desc" });
                   }}
                 >
-                  Created
+                  {sort === "created" && params.created === "asc" ? (
+                    <IconContext.Provider value={{ color: "#00785a" }}>
+                      <FaArrowUp />
+                    </IconContext.Provider>
+                  ) : null}
+                  {sort === "created" && params.created === "desc" ? (
+                    <IconContext.Provider value={{ color: "#00785a" }}>
+                      <FaArrowDown />
+                    </IconContext.Provider>
+                  ) : null}
+                  <span>Created</span>
                 </th>
                 <th
                   className={sort === "updated" ? "active" : ""}
@@ -221,7 +251,17 @@ const Posts = () => {
                     else setParams({ ...params, updated: "desc" });
                   }}
                 >
-                  Updated
+                  {sort === "updated" && params.updated === "asc" ? (
+                    <IconContext.Provider value={{ color: "#00785a" }}>
+                      <FaArrowUp />
+                    </IconContext.Provider>
+                  ) : null}
+                  {sort === "updated" && params.updated === "desc" ? (
+                    <IconContext.Provider value={{ color: "#00785a" }}>
+                      <FaArrowDown />
+                    </IconContext.Provider>
+                  ) : null}
+                  <span>Updated</span>
                 </th>
               </tr>
             </thead>
@@ -229,74 +269,46 @@ const Posts = () => {
               {load ? <Loader /> : null}
               {posts ? (
                 posts[0].id !== -1 ? (
-                  showAll ? (
-                    posts.map((post: PostType) => {
-                      return (
-                        <Link
-                          className="post-link"
-                          to={`/posts/${post.id}`}
-                          key={uuidv4()}
-                        >
-                          <tr>
-                            <td>{post.id}</td>
-                            <td>{post.category}</td>
-                            <td>{post.title}</td>
-                            <td>
-                              <a
-                                href={post.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                <BiLinkExternal />
-                              </a>
-                            </td>
-                            <td>{parseDate(post.publish_date)[0]}</td>
-                            <td>{parseDate(post.createdAt)[0]}</td>
-                            <td>{parseDate(post.updatedAt)[0]}</td>
-                          </tr>
-                        </Link>
-                      );
-                    })
-                  ) : (
-                    posts.map((post: PostType, index: number) => {
-                      if (post.category === category) {
-                        return (
-                          <Link
-                            className="post-link"
-                            to={`/posts/${post.id}`}
-                            key={uuidv4()}
-                          >
-                            <tr>
-                              <td>{index + 1}</td>
-                              <td>{post.category}</td>
-                              <td>{post.title}</td>
-                              <td>
-                                <a
-                                  href={post.link}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                >
-                                  <BiLinkExternal />
-                                </a>
-                              </td>
-                              <td>{parseDate(post.publish_date)[0]}</td>
-                              <td>{parseDate(post.createdAt)[0]}</td>
-                              <td>{parseDate(post.updatedAt)[0]}</td>
-                            </tr>
-                          </Link>
-                        );
-                      } else {
-                        return "";
-                      }
-                    })
-                  )
+                  posts.map((post: PostType) => {
+                    return (
+                      <Link
+                        className="post-link"
+                        to={`/posts/${post.id}`}
+                        key={uuidv4()}
+                      >
+                        <tr>
+                          <td>{post.id}</td>
+                          <td>{post.category}</td>
+                          <td>{post.title}</td>
+                          <td>
+                            <a
+                              href={post.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <BiLinkExternal />
+                            </a>
+                          </td>
+                          <td>{parseDate(post.publish_date)[0]}</td>
+                          <td>{parseDate(post.createdAt)[0]}</td>
+                          <td>{parseDate(post.updatedAt)[0]}</td>
+                        </tr>
+                      </Link>
+                    );
+                  })
                 ) : (
-                  ""
+                  <tr>
+                    <td className="table__empty" colSpan={7}>
+                      No posts
+                    </td>
+                  </tr>
                 )
               ) : (
-                <td>
-                  <tr className="table__empty">No posts</tr>
-                </td>
+                <tr>
+                  <td className="table__empty" colSpan={7}>
+                    No posts
+                  </td>
+                </tr>
               )}
             </tbody>
           </table>

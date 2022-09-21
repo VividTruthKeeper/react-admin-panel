@@ -19,7 +19,6 @@ export interface PostType {
 
 export interface paramsType {
   id: "asc" | "desc";
-  source: "asc" | "desc";
   title: "asc" | "desc";
   link: "asc" | "desc";
   date: "asc" | "desc";

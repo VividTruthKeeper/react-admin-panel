@@ -23,6 +23,7 @@ import { ContextType } from "../types/context";
 const Source = () => {
   const { sources, setSources } =
     useContext<ContextType>(PostContext).sourceValue;
+  const { popup, setPopup } = useContext<ContextType>(PostContext).popupValue;
   const [deleted, setDeleted] = useState<boolean>(false);
 
   useEffect(() => {
@@ -79,7 +80,12 @@ const Source = () => {
                           <div className="source-action__block">
                             <button
                               onClick={() => {
-                                deleteLink(setDeleted, source.id);
+                                deleteLink(
+                                  setDeleted,
+                                  popup,
+                                  setPopup,
+                                  source.id
+                                );
                               }}
                             >
                               <span>Delete</span>

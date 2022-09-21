@@ -15,7 +15,7 @@ import { SourceEditDataType } from "../types/sources";
 const CreateSource = () => {
   const { setSources } = useContext<ContextType>(PostContext).sourceValue;
   const { popup, setPopup } = useContext<ContextType>(PostContext).popupValue;
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [data, setData] = useState<SourceEditDataType>({
     name: "",
     source: "",
@@ -65,14 +65,13 @@ const CreateSource = () => {
               disabled={!(data.name.length > 0 && data.source.length > 0)}
               className="source-edit__submit"
               onClick={() => {
-                createLink(() => {}, data);
-                setPopup({ ...popup, pop: true });
-
-                setTimeout(() => {
-                  // navigate("/source");
-                  getLinks(setSources);
-                }, 2000);
-                setTimeout(() => setPopup({ ...popup, remove: true }), 2000);
+                createLink(
+                  popup,
+                  setPopup,
+                  data,
+                  () => navigate("/source"),
+                  () => getLinks(setSources)
+                );
               }}
             >
               Create new source

@@ -1,10 +1,11 @@
 // Modules
 import axios from "axios";
-import React from "react";
+import React, { SetStateAction } from "react";
 
 // Types
 import { PostType } from "../types/posts";
 import { LinksAll } from "../types/links";
+import { PopupType } from "../types/popup";
 
 export const getPosts = (
   setLoad: React.Dispatch<boolean>,
@@ -21,14 +22,27 @@ export const getPosts = (
     .finally(() => setLoad(false));
 };
 
-export const deleteLink = (setSuccess: React.Dispatch<boolean>, id: number) => {
+export const deleteLink = (
+  setSuccess: React.Dispatch<boolean>,
+  popup: PopupType,
+  setPopup: React.Dispatch<SetStateAction<PopupType>>,
+  id: number
+) => {
   axios
     .delete(`http://95.85.124.41:8080/link/delete/${id}`)
     .then((res) => {
       setSuccess(true);
+      setPopup({ ...popup, success: true, pop: true });
+      setTimeout(() => {
+        setPopup({ ...popup, pop: false });
+      }, 2000);
     })
     .catch((err) => {
       setSuccess(false);
+      setPopup({ ...popup, success: false, pop: true });
+      setTimeout(() => {
+        setPopup({ ...popup, pop: false });
+      }, 2000);
     });
 };
 
@@ -42,8 +56,11 @@ export const getLinks = (setLinks: React.Dispatch<LinksAll[]>) => {
 };
 
 export const createLink = (
-  setSuccess: React.Dispatch<string>,
-  data: { name: string; source: string }
+  popup: PopupType,
+  setPopup: React.Dispatch<SetStateAction<PopupType>>,
+  data: { name: string; source: string },
+  navigate: () => void,
+  getLinks: () => void
 ) => {
   axios
     .post("http://95.85.124.41:8080/link/create", {
@@ -51,24 +68,43 @@ export const createLink = (
       source: data.source,
     })
     .then((res) => {
-      setSuccess(res.data.message);
+      setPopup({ ...popup, success: true, pop: true });
+      navigate();
+      setTimeout(() => {
+        setPopup({ ...popup, pop: false });
+        getLinks();
+      }, 2000);
     })
     .catch((err) => {
-      setSuccess("error");
+      setPopup({ ...popup, success: false, pop: true });
+      setTimeout(() => {
+        setPopup({ ...popup, pop: false });
+      }, 2000);
     });
 };
 
 export const updateLink = (
-  setSuccess: React.Dispatch<string>,
+  popup: PopupType,
+  setPopup: React.Dispatch<SetStateAction<PopupType>>,
+  navigate: () => void,
+  getLinks: () => void,
   id: number,
   data: { name: string; source: string }
 ) => {
   axios
     .put(`http://95.85.124.41:8080/link/update/${id}`, data)
     .then((res) => {
-      setSuccess(res.data.message);
+      setPopup({ ...popup, success: true, pop: true });
+      navigate();
+      setTimeout(() => {
+        setPopup({ ...popup, pop: false });
+        getLinks();
+      }, 2000);
     })
     .catch((err) => {
-      setSuccess("error");
+      setPopup({ ...popup, success: false, pop: true });
+      setTimeout(() => {
+        setPopup({ ...popup, pop: false });
+      }, 2000);
     });
 };

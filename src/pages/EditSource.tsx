@@ -19,6 +19,7 @@ const EditSource = () => {
   const navigate = useNavigate();
   const { sources, setSources } =
     useContext<ContextType>(PostContext).sourceValue;
+  const { popup, setPopup } = useContext<ContextType>(PostContext).popupValue;
   const [source, setSource] = useState<SourceType>();
   useEffect(() => {
     if (sources) {
@@ -60,7 +61,7 @@ const EditSource = () => {
                     readOnly
                     type="text"
                     id="id"
-                    value={source ? source.name : ""}
+                    value={source ? source.id : ""}
                   />
                 </div>
                 <div className="source-edit__input">
@@ -113,11 +114,14 @@ const EditSource = () => {
                 disabled={!(data.name.length > 0 && data.source.length > 0)}
                 className="source-edit__submit"
                 onClick={() => {
-                  updateLink(() => {}, id ? parseInt(id) : 0, data);
-                  setTimeout(() => {
-                    navigate("/source");
-                    getLinks(setSources);
-                  }, 2000);
+                  updateLink(
+                    popup,
+                    setPopup,
+                    () => navigate("/source"),
+                    () => getLinks(setSources),
+                    id ? parseInt(id) : 0,
+                    data
+                  );
                 }}
               >
                 Update source

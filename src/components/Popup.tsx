@@ -4,27 +4,30 @@ import { useContext } from "react";
 import { PostContext } from "../context/PostContext";
 
 // Icons
-import { FaCheck } from "react-icons/fa";
+import { FaRegThumbsUp } from "react-icons/fa";
+import { FaRegThumbsDown } from "react-icons/fa";
 
 // Types
 
 import { ContextType } from "../types/context";
 
 const Popup = () => {
-  const { pop, remove, message } =
+  const { pop, message, success } =
     useContext<ContextType>(PostContext).popupValue.popup;
   return (
     <div className="popup__wrapper">
       <div className="popup__wrapper__inner">
-        <div
-          className={
-            remove ? "popup active disabled" : pop ? "popup active" : "popup"
-          }
-        >
-          <IconContext.Provider value={{ color: "#8DD77F" }}>
-            <FaCheck />
-          </IconContext.Provider>
-          <span>{message}</span>
+        <div className={pop ? "popup active" : "popup"}>
+          {success ? (
+            <IconContext.Provider value={{ color: "#8DD77F" }}>
+              <FaRegThumbsUp />
+            </IconContext.Provider>
+          ) : (
+            <IconContext.Provider value={{ color: "red" }}>
+              <FaRegThumbsDown />
+            </IconContext.Provider>
+          )}
+          <span>{success ? message.success : message.failure}</span>
         </div>
       </div>
     </div>

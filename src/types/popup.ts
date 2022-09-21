@@ -1,5 +1,8 @@
 export interface PopupType {
-  message: string;
+  message: {
+    success: string;
+    failure: string;
+  };
+  success: boolean;
   pop: boolean;
-  remove: boolean;
 }

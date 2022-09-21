@@ -33,9 +33,12 @@ const App = () => {
   const navigate = useNavigate();
   const [posts, setPosts] = useState<PostType[]>();
   const [popup, setPopup] = useState<PopupType>({
-    message: "Link created successfully",
+    success: false,
     pop: false,
-    remove: false,
+    message: {
+      success: "Success",
+      failure: "Failure",
+    },
   });
 
   const [sources, setSources] = useState<SourceType[]>();

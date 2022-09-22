@@ -1,6 +1,6 @@
 // Modules
 import { v4 as uuidv4 } from "uuid";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { PostContext } from "../context/PostContext";
 import { IconContext } from "react-icons";
 
@@ -28,9 +28,18 @@ interface pageType {
   pageNumber: number;
 }
 
-interface searchType {
-  type: string;
-  query: string;
+interface filterType {
+  name: string;
+  value: string;
+}
+
+interface filtersType {
+  fil_title: filterType;
+  fil_link: filterType;
+  fil_publish_date: filterType;
+  fil_summary: filterType;
+  fil_createdAt: filterType;
+  fil_updatedAt: filterType;
 }
 
 const Posts = () => {
@@ -44,10 +53,6 @@ const Posts = () => {
     perPage: 10,
     pageNumber: 1,
   });
-  const [search, setSearch] = useState<searchType>({
-    type: "fil_title",
-    query: "",
-  });
 
   const [params, setParams] = useState<paramsType>({
     id: "asc",
@@ -59,14 +64,55 @@ const Posts = () => {
     updated: "asc",
   });
 
+  const [filters, setFilters] = useState<filtersType>({
+    fil_title: {
+      name: "fil_title",
+      value: "",
+    },
+    fil_link: {
+      name: "fil_link",
+      value: "",
+    },
+    fil_publish_date: {
+      name: "fil_publish_date",
+      value: "",
+    },
+    fil_summary: {
+      name: "fil_summary",
+      value: "",
+    },
+    fil_createdAt: {
+      name: "fil_createdAt",
+      value: "",
+    },
+    fil_updatedAt: {
+      name: "fil_updatedAt",
+      value: "",
+    },
+  });
+
+  const defineFilters = useCallback(() => {
+    let outString: string = "";
+    const keys: string[] = Object.keys(filters);
+    keys.map((key) => {
+      const keyy = key as keyof typeof filters;
+      if (filters[keyy].value.length > 0) {
+        outString = outString + `&${filters[keyy].name}=${filters[keyy].value}`;
+      }
+    });
+
+    return outString;
+  }, [filters, setFilters]);
+
   useEffect(() => {
+    const filters = defineFilters();
     const key = sort as keyof typeof params;
     getPosts(
       setLoad,
       setPosts,
-      `?sortBy=${sort}.${params[key]}&category=${category}&strLimit=${page.perPage}&strOffset=${page.pageNumber}&${search.type}=${search.query}`
+      `?sortBy=${sort}.${params[key]}&category=${category}&strLimit=${page.perPage}&strOffset=${page.pageNumber}${filters}`
     );
-  }, [params, sort, page, search, category]);
+  }, [params, sort, page, category, filters]);
 
   return (
     <main className="posts">
@@ -127,49 +173,40 @@ const Posts = () => {
                 <option value="100">100</option>
               </select>
             </div>
-            <div className="posts__select">
-              <label htmlFor="pp">Filter by</label>
-              <select
-                id="pp"
-                value={search.type}
-                onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-                  setSearch({ ...search, type: e.target.value });
-                }}
-              >
-                <option value="fil_title" defaultChecked>
-                  Title
-                </option>
-                <option value="fil_link">Link</option>
-                <option value="fil_publish_date">Publish date</option>
-                <option value="fil_summary">Summary</option>
-                <option value="fil_createdAt">Created</option>
-                <option value="fil_updatedAt">Updated</option>
-              </select>
-            </div>
-            <div className="posts__select">
-              <label htmlFor="filter">Filter</label>
-
-              <input
-                type="text"
-                id="filter"
-                value={search.query}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  setSearch({ ...search, query: e.target.value });
-                }}
-              />
-            </div>
             <div className="posts__select  posts__reset__btn">
               <button
                 className="posts__reset"
                 onClick={() => {
                   setCategory("");
-                  setSearch({
-                    type: "fil_title",
-                    query: "",
-                  });
                   setPage({
                     perPage: 10,
                     pageNumber: 1,
+                  });
+                  setFilters({
+                    fil_title: {
+                      name: "fil_title",
+                      value: "",
+                    },
+                    fil_link: {
+                      name: "fil_link",
+                      value: "",
+                    },
+                    fil_publish_date: {
+                      name: "fil_publish_date",
+                      value: "",
+                    },
+                    fil_summary: {
+                      name: "fil_summary",
+                      value: "",
+                    },
+                    fil_createdAt: {
+                      name: "fil_createdAt",
+                      value: "",
+                    },
+                    fil_updatedAt: {
+                      name: "fil_updatedAt",
+                      value: "",
+                    },
                   });
                 }}
               >
@@ -177,6 +214,7 @@ const Posts = () => {
               </button>
             </div>
           </div>
+
           <table className={load ? "posts__table disabled" : "posts__table"}>
             <thead>
               <tr className="posts__table__head">
@@ -308,6 +346,96 @@ const Posts = () => {
                     </IconContext.Provider>
                   ) : null}
                   <span>Updated</span>
+                </th>
+              </tr>
+              <tr className="posts__table__head posts__table__head--inputs">
+                <th></th>
+                <th></th>
+                <th>
+                  <input
+                    placeholder="Filter by title"
+                    id="filter-title"
+                    type="text"
+                    value={filters.fil_title.value}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setFilters({
+                        ...filters,
+                        fil_title: {
+                          ...filters.fil_title,
+                          value: e.target.value,
+                        },
+                      })
+                    }
+                  />
+                </th>
+
+                <th>
+                  <input
+                    placeholder="Filter by link"
+                    id="filter-link"
+                    type="text"
+                    value={filters.fil_link.value}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setFilters({
+                        ...filters,
+                        fil_link: {
+                          ...filters.fil_link,
+                          value: e.target.value,
+                        },
+                      })
+                    }
+                  />
+                </th>
+                <th>
+                  <input
+                    placeholder="Filter by published"
+                    id="filter-published"
+                    type="text"
+                    value={filters.fil_publish_date.value}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setFilters({
+                        ...filters,
+                        fil_publish_date: {
+                          ...filters.fil_publish_date,
+                          value: e.target.value,
+                        },
+                      })
+                    }
+                  />
+                </th>
+                <th>
+                  <input
+                    placeholder="Filter by created"
+                    id="filter-created"
+                    type="text"
+                    value={filters.fil_createdAt.value}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setFilters({
+                        ...filters,
+                        fil_createdAt: {
+                          ...filters.fil_createdAt,
+                          value: e.target.value,
+                        },
+                      })
+                    }
+                  />
+                </th>
+                <th>
+                  <input
+                    placeholder="Filter by updated"
+                    id="filter-updated"
+                    type="text"
+                    value={filters.fil_updatedAt.value}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setFilters({
+                        ...filters,
+                        fil_updatedAt: {
+                          ...filters.fil_updatedAt,
+                          value: e.target.value,
+                        },
+                      })
+                    }
+                  />
                 </th>
               </tr>
             </thead>

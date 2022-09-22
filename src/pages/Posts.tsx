@@ -336,9 +336,15 @@ const Posts = () => {
                                 <BiLinkExternal />
                               </a>
                             </td>
-                            <td>{parseDate(post.publish_date)[0]}</td>
-                            <td>{parseDate(post.createdAt)[0]}</td>
-                            <td>{parseDate(post.updatedAt)[0]}</td>
+                            <td>{`${parseDate(post.publish_date)[0]}, ${
+                              parseDate(post.publish_date)[1]
+                            }`}</td>
+                            <td>{`${parseDate(post.createdAt)[0]}, ${
+                              parseDate(post.createdAt)[1]
+                            }`}</td>
+                            <td>{`${parseDate(post.updatedAt)[0]}, ${
+                              parseDate(post.updatedAt)[1]
+                            }`}</td>
                           </tr>
                         </Link>
                       );

@@ -73,7 +73,13 @@ const Post = () => {
               <input
                 type={"text"}
                 readOnly
-                value={postData ? parseDate(postData.publish_date)[0] : ""}
+                value={
+                  postData
+                    ? `${parseDate(postData.publish_date)[0]}, ${
+                        parseDate(postData.publish_date)[1]
+                      }`
+                    : ""
+                }
               />
             </div>
             <div className="post__content__block">
@@ -116,13 +122,25 @@ const Post = () => {
                                 <tr key={uuidv4()}>
                                   <td>{History.PostID}</td>
                                   <td>
-                                    {parseDate(History.old_published_at)[0]}
+                                    {`${
+                                      parseDate(History.old_published_at)[0]
+                                    }, ${
+                                      parseDate(History.old_published_at)[1]
+                                    }`}
                                   </td>
                                   <td>
-                                    {parseDate(History.new_published_at)[0]}
+                                    {`${
+                                      parseDate(History.new_published_at)[0]
+                                    }, ${
+                                      parseDate(History.new_published_at)[1]
+                                    }`}
                                   </td>
-                                  <td>{parseDate(History.createdAt)[0]}</td>
-                                  <td>{parseDate(History.updatedAt)[0]}</td>
+                                  <td>{`${parseDate(History.createdAt)[0]}, ${
+                                    parseDate(History.createdAt)[1]
+                                  }`}</td>
+                                  <td>{`${parseDate(History.updatedAt)[0]}, ${
+                                    parseDate(History.updatedAt)[1]
+                                  }`}</td>
                                 </tr>
                               );
                             })

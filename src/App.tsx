@@ -18,7 +18,6 @@ import Popup from "./components/Popup";
 // Pages
 import Login from "./pages/Login";
 import Main from "./pages/Main";
-import Dashboard from "./pages/Dashboard";
 import Posts from "./pages/Posts";
 import Details from "./pages/Details";
 import Post from "./pages/Post";
@@ -83,7 +82,6 @@ const App = () => {
           <Popup />
           <Routes>
             <Route path="/" element={<Main />} />
-            <Route path="/dashboard" element={<Main child={<Dashboard />} />} />
             <Route path="/posts" element={<Main child={<Posts />} />} />
             <Route path="/source" element={<Main child={<Source />} />} />
             <Route

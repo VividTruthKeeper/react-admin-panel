@@ -93,6 +93,8 @@ const Post = () => {
             <a
               className="post__content__btn"
               href={postData ? postData.link : ""}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <IconContext.Provider value={{ color: "#FFFFFF" }}>
                 <BiLinkExternal />

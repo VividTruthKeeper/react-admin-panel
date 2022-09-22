@@ -32,7 +32,7 @@ const Aside = ({ aside, setAside }: Props) => {
             <FaHive className="aside__img" />
           </IconContext.Provider>
 
-          <h2>Elements</h2>
+          <h2>Posts</h2>
         </li>
         <li className="aside__list__element">
           <Link

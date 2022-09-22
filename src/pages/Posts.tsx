@@ -28,6 +28,11 @@ interface pageType {
   pageNumber: number;
 }
 
+interface searchType {
+  type: string;
+  query: string;
+}
+
 const Posts = () => {
   const [load, setLoad] = useState<boolean>(false);
   const contextValue: ContextType = useContext<ContextType>(PostContext);
@@ -39,6 +44,10 @@ const Posts = () => {
     perPage: 10,
     pageNumber: 1,
   });
+  const [search, setSearch] = useState<searchType>({
+    type: "fil_title",
+    query: "",
+  });
 
   const [params, setParams] = useState<paramsType>({
     id: "asc",
@@ -49,14 +58,13 @@ const Posts = () => {
     created: "asc",
     updated: "asc",
   });
-  const [search, setSearch] = useState<string>("");
 
   useEffect(() => {
     const key = sort as keyof typeof params;
     getPosts(
       setLoad,
       setPosts,
-      `?sortBy=${sort}.${params[key]}&category=${category}&strLimit=${page.perPage}&strOffset=${page.pageNumber}&filter=${search}`
+      `?sortBy=${sort}.${params[key]}&category=${category}&strLimit=${page.perPage}&strOffset=${page.pageNumber}&${search.type}=${search.query}`
     );
   }, [params, sort, page, search, category]);
 
@@ -120,15 +128,53 @@ const Posts = () => {
               </select>
             </div>
             <div className="posts__select">
+              <label htmlFor="pp">Filter by</label>
+              <select
+                id="pp"
+                value={search.type}
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                  setSearch({ ...search, type: e.target.value });
+                }}
+              >
+                <option value="fil_title" defaultChecked>
+                  Title
+                </option>
+                <option value="fil_link">Link</option>
+                <option value="fil_publish_date">Publish date</option>
+                <option value="fil_summary">Summary</option>
+                <option value="fil_createdAt">Created</option>
+                <option value="fil_updatedAt">Updated</option>
+              </select>
+            </div>
+            <div className="posts__select">
               <label htmlFor="filter">Filter</label>
+
               <input
                 type="text"
                 id="filter"
-                value={search}
+                value={search.query}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  setSearch(e.target.value);
+                  setSearch({ ...search, query: e.target.value });
                 }}
               />
+            </div>
+            <div className="posts__select  posts__reset__btn">
+              <button
+                className="posts__reset"
+                onClick={() => {
+                  setCategory("");
+                  setSearch({
+                    type: "fil_title",
+                    query: "",
+                  });
+                  setPage({
+                    perPage: 10,
+                    pageNumber: 1,
+                  });
+                }}
+              >
+                Reset
+              </button>
             </div>
           </div>
           <table className={load ? "posts__table disabled" : "posts__table"}>
@@ -268,34 +314,42 @@ const Posts = () => {
             <tbody>
               {load ? <Loader /> : null}
               {posts ? (
-                posts[0].id !== -1 ? (
-                  posts.map((post: PostType) => {
-                    return (
-                      <Link
-                        className="post-link"
-                        to={`/posts/${post.id}`}
-                        key={uuidv4()}
-                      >
-                        <tr>
-                          <td>{post.id}</td>
-                          <td>{post.category}</td>
-                          <td>{post.title}</td>
-                          <td>
-                            <a
-                              href={post.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <BiLinkExternal />
-                            </a>
-                          </td>
-                          <td>{parseDate(post.publish_date)[0]}</td>
-                          <td>{parseDate(post.createdAt)[0]}</td>
-                          <td>{parseDate(post.updatedAt)[0]}</td>
-                        </tr>
-                      </Link>
-                    );
-                  })
+                posts.length > 0 ? (
+                  posts[0].id !== -1 ? (
+                    posts.map((post: PostType) => {
+                      return (
+                        <Link
+                          className="post-link"
+                          to={`/posts/${post.id}`}
+                          key={uuidv4()}
+                        >
+                          <tr>
+                            <td>{post.id}</td>
+                            <td>{post.category}</td>
+                            <td>{post.title}</td>
+                            <td>
+                              <a
+                                href={post.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <BiLinkExternal />
+                              </a>
+                            </td>
+                            <td>{parseDate(post.publish_date)[0]}</td>
+                            <td>{parseDate(post.createdAt)[0]}</td>
+                            <td>{parseDate(post.updatedAt)[0]}</td>
+                          </tr>
+                        </Link>
+                      );
+                    })
+                  ) : (
+                    <tr>
+                      <td className="table__empty" colSpan={7}>
+                        No posts
+                      </td>
+                    </tr>
+                  )
                 ) : (
                   <tr>
                     <td className="table__empty" colSpan={7}>

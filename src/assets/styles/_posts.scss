@@ -165,6 +165,34 @@
       flex-direction: column;
     }
   }
+
+  &__reset {
+    color: #fff;
+
+    max-width: 30rem;
+    font-size: 1.6rem;
+    border-radius: 0.5rem;
+    background: #2fad8c;
+    padding: 0.5rem 2rem;
+    transition: 0.3s all ease;
+    text-align: center;
+    height: 67%;
+    min-width: 20rem;
+    cursor: pointer;
+    @include transition-std;
+
+    &:hover {
+      @include transition-std;
+      background-color: #268a6f;
+      border: 0.1rem solid #268a6f;
+    }
+
+    &__btn {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+    }
+  }
 }
 
 .post {

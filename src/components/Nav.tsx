@@ -26,7 +26,7 @@ const Nav = ({ aside, setAside }: Props) => {
         <div className="nav inner">
           <div className="nav__left">
             <Link
-              to={"/dashboard"}
+              to={"/posts"}
               className="nav__img"
               onClick={() => {
                 localStorage.setItem("lastLocation", "/dashboard");

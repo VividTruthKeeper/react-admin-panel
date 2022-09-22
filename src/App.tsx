@@ -67,7 +67,7 @@ const App = () => {
       // localStorage.removeItem("lastLocation");
       navigate("/login");
     } else {
-      navigate(localStorage.getItem("lastLocation") || "/dashboard");
+      navigate(localStorage.getItem("lastLocation") || "/posts");
     }
   }, [user]);
 

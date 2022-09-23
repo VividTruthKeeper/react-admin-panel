@@ -390,7 +390,7 @@ const Posts = () => {
                   <input
                     placeholder="Filter by published"
                     id="filter-published"
-                    type="date"
+                    type="datetime-local"
                     value={filters.fil_publish_date.value}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setFilters({
@@ -407,7 +407,7 @@ const Posts = () => {
                   <input
                     placeholder="Filter by created"
                     id="filter-created"
-                    type="date"
+                    type="datetime-local"
                     value={filters.fil_createdAt.value}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setFilters({
@@ -424,7 +424,7 @@ const Posts = () => {
                   <input
                     placeholder="Filter by updated"
                     id="filter-updated"
-                    type="date"
+                    type="datetime-local"
                     value={filters.fil_updatedAt.value}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setFilters({

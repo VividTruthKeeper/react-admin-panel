@@ -93,6 +93,14 @@ select {
   }
 }
 
+input[type="date"]::-webkit-calendar-picker-indicator {
+  color: rgba(0, 0, 0, 0);
+  opacity: 1;
+  display: block;
+  background: url("../icons/calendar.svg") no-repeat;
+  border-width: thin;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 1rem;

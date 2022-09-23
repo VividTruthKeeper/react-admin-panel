@@ -99,7 +99,7 @@ const Posts = () => {
       if (filters[keyy].value.length > 0) {
         outString =
           outString +
-          `&${filters[keyy].name}=${filters[keyy].value.split("T")[0]} ${
+          `&${filters[keyy].name}=${filters[keyy].value.split("T")[0]}%20${
             filters[keyy].value.split("T")[1]
           }`;
       }

@@ -97,7 +97,11 @@ const Posts = () => {
     keys.map((key) => {
       const keyy = key as keyof typeof filters;
       if (filters[keyy].value.length > 0) {
-        outString = outString + `&${filters[keyy].name}=${filters[keyy].value}`;
+        outString =
+          outString +
+          `&${filters[keyy].name}=${filters[keyy].value.split("T")[0]} ${
+            filters[keyy].value.split("T")[1]
+          }`;
       }
     });
 
@@ -376,12 +380,11 @@ const Posts = () => {
                     type="text"
                     value={filters.fil_link.value}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                      const format = e.target.value.split("T");
                       setFilters({
                         ...filters,
                         fil_link: {
                           ...filters.fil_link,
-                          value: `${format[0]} ${format[1]}`,
+                          value: e.target.value,
                         },
                       });
                     }}
@@ -394,12 +397,11 @@ const Posts = () => {
                     type="datetime-local"
                     value={filters.fil_publish_date.value}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                      const format = e.target.value.split("T");
                       setFilters({
                         ...filters,
                         fil_publish_date: {
                           ...filters.fil_publish_date,
-                          value: `${format[0]} ${format[1]}`,
+                          value: e.target.value,
                         },
                       });
                     }}
@@ -412,12 +414,11 @@ const Posts = () => {
                     type="datetime-local"
                     value={filters.fil_createdAt.value}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                      const format = e.target.value.split("T");
                       setFilters({
                         ...filters,
                         fil_createdAt: {
                           ...filters.fil_createdAt,
-                          value: `${format[0]} ${format[1]}`,
+                          value: e.target.value,
                         },
                       });
                     }}

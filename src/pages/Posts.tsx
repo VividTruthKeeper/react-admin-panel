@@ -375,15 +375,16 @@ const Posts = () => {
                     id="filter-link"
                     type="text"
                     value={filters.fil_link.value}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      const format = e.target.value.split("T");
                       setFilters({
                         ...filters,
                         fil_link: {
                           ...filters.fil_link,
-                          value: e.target.value,
+                          value: `${format[0]} ${format[1]}`,
                         },
-                      })
-                    }
+                      });
+                    }}
                   />
                 </th>
                 <th>
@@ -392,15 +393,16 @@ const Posts = () => {
                     id="filter-published"
                     type="datetime-local"
                     value={filters.fil_publish_date.value}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      const format = e.target.value.split("T");
                       setFilters({
                         ...filters,
                         fil_publish_date: {
                           ...filters.fil_publish_date,
-                          value: e.target.value,
+                          value: `${format[0]} ${format[1]}`,
                         },
-                      })
-                    }
+                      });
+                    }}
                   />
                 </th>
                 <th>
@@ -409,15 +411,16 @@ const Posts = () => {
                     id="filter-created"
                     type="datetime-local"
                     value={filters.fil_createdAt.value}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      const format = e.target.value.split("T");
                       setFilters({
                         ...filters,
                         fil_createdAt: {
                           ...filters.fil_createdAt,
-                          value: e.target.value,
+                          value: `${format[0]} ${format[1]}`,
                         },
-                      })
-                    }
+                      });
+                    }}
                   />
                 </th>
                 <th>

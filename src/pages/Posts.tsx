@@ -99,7 +99,6 @@ const Posts = () => {
       if (filters[keyy].value.length > 0) {
         outString = `${outString}&${filters[keyy].name}=${filters[keyy].value}`;
       }
-      console.log(outString);
     });
 
     return outString;

@@ -32,11 +32,11 @@ const Nav = ({ aside, setAside }: Props) => {
                 localStorage.setItem("lastLocation", "/dashboard");
               }}
             >
-              <IconContext.Provider value={{ color: "#8DD77F" }}>
+              <IconContext.Provider value={{ color: "#7d69ef" }}>
                 <FaMeteor />
               </IconContext.Provider>
             </Link>
-            <IconContext.Provider value={{ color: "#8DD77F" }}>
+            <IconContext.Provider value={{ color: "#7d69ef" }}>
               <GiHamburgerMenu
                 type="button"
                 className="nav__btn"
@@ -51,7 +51,7 @@ const Nav = ({ aside, setAside }: Props) => {
                 setDropdown(!dropdown);
               }}
             >
-              <IconContext.Provider value={{ color: "#8DD77F" }}>
+              <IconContext.Provider value={{ color: "#7d69ef" }}>
                 <FaUserAlt className="nav__right__user__img" />
               </IconContext.Provider>
 

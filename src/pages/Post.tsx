@@ -33,15 +33,27 @@ const Post = () => {
       }
     }
   }, [posts]);
+  console.log(postData ? parseDate(postData.publish_date)[0] : "");
   return (
     <main className="post">
       <div className="container">
         <div className="post inner">
           <div className="dashboard__head post__head">
-            <IconContext.Provider value={{ color: "#8DD77F" }}>
+            <IconContext.Provider value={{ color: "#7d69ef" }}>
               <FaBoxOpen className="dashboard__img" />
             </IconContext.Provider>
             <h1 className="post__head">{postData ? postData.title : ""}</h1>
+          </div>
+          <div className="post__date">
+            <h4>
+              {postData
+                ? postData.publish_date
+                  ? `${parseDate(postData.publish_date)[0]}, ${
+                      parseDate(postData.publish_date)[1]
+                    }`
+                  : ""
+                : ""}
+            </h4>
           </div>
           <div className="post__content">
             <div className="post__content__block">
@@ -68,20 +80,7 @@ const Post = () => {
                 value={postData ? postData.title : ""}
               />
             </div>
-            <div className="post__content__block">
-              <h4>Date</h4>
-              <input
-                type={"text"}
-                readOnly
-                value={
-                  postData
-                    ? `${parseDate(postData.publish_date)[0]}, ${
-                        parseDate(postData.publish_date)[1]
-                      }`
-                    : ""
-                }
-              />
-            </div>
+
             <div className="post__content__block">
               <h4>Summary</h4>
               <textarea

@@ -22,7 +22,7 @@ html {
 }
 
 body {
-  background-color: $base-black;
+  background-color: $base-gray;
   position: relative;
 }
 
@@ -65,7 +65,7 @@ label,
 input,
 textarea,
 p {
-  color: $base-gray;
+  color: #000;
 }
 
 .green {
@@ -99,24 +99,4 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   display: block;
   background: url("../icons/calendar.svg") no-repeat;
   border-width: thin;
-}
-
-/* width */
-::-webkit-scrollbar {
-  width: 1rem;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: $light-blue;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: $base-blue;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: $hover-blue;
 }

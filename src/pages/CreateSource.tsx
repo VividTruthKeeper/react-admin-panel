@@ -25,7 +25,7 @@ const CreateSource = () => {
       <div className="container">
         <div className="source__create inner">
           <div className="dashboard__head source__head">
-            <IconContext.Provider value={{ color: "#8DD77F" }}>
+            <IconContext.Provider value={{ color: "#7d69ef" }}>
               <FaRegPlusSquare />
             </IconContext.Provider>
             <h1>Create source</h1>

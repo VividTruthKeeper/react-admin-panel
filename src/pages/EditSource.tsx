@@ -42,7 +42,7 @@ const EditSource = () => {
       <div className="container">
         <div className="source-edit inner">
           <div className="dashboard__head source-edit__head">
-            <IconContext.Provider value={{ color: "#8DD77F" }}>
+            <IconContext.Provider value={{ color: "#7d69ef" }}>
               <FaRegEdit className="dashboard__img" />
             </IconContext.Provider>
             <h1>Edit source</h1>

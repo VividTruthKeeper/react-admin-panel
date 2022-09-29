@@ -40,7 +40,7 @@ const Source = () => {
       <div className="container">
         <div className="category inner">
           <div className="dashboard__head category__head">
-            <IconContext.Provider value={{ color: "#8DD77F" }}>
+            <IconContext.Provider value={{ color: "#7d69ef" }}>
               <FaSourcetree />
             </IconContext.Provider>
             <h1>Source</h1>
@@ -71,7 +71,7 @@ const Source = () => {
                             <Link to={`/source/edit/${source.id}`}>
                               <span>Edit</span>
                               <IconContext.Provider
-                                value={{ color: "#8DD77F" }}
+                                value={{ color: "#7d69ef" }}
                               >
                                 <FaRegEdit />
                               </IconContext.Provider>
@@ -90,7 +90,7 @@ const Source = () => {
                             >
                               <span>Delete</span>
                               <IconContext.Provider
-                                value={{ color: "#8DD77F" }}
+                                value={{ color: "#7d69ef" }}
                               >
                                 <FaTrash />
                               </IconContext.Provider>

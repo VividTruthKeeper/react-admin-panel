@@ -27,7 +27,8 @@
   align-items: center;
   gap: 3rem;
   padding: 1.6rem;
-  background: $light-black;
+  background: $base-white;
+  border: 0.1rem solid rgba(0, 40, 100, 0.12);
   @include transition-std;
 
   span {

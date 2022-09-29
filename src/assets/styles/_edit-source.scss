@@ -7,6 +7,9 @@
 
   &__content {
     form {
+      padding: 2rem;
+      border: 0.1rem solid rgba(0, 40, 100, 0.12);
+      background: $base-white;
       display: flex;
       flex-direction: column;
       gap: 4rem;
@@ -18,7 +21,6 @@
     display: flex;
     flex-direction: column;
     gap: 3rem;
-    padding: 1rem;
 
     h2 {
       font-weight: normal;
@@ -35,7 +37,7 @@
 
     input {
       font-size: 1.6rem;
-      background: $light-black;
+      background: $base-gray;
       padding: 0.6rem 1.2rem;
       border-radius: 0.5rem;
     }

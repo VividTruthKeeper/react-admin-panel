@@ -15,13 +15,14 @@
   &__header {
     text-align: center;
     font-size: 2.8rem;
+    font-weight: normal;
   }
 
   &__form {
     min-width: 35rem;
-    background: $light-black;
+    background: $base-white;
+    border: 0.1rem solid #d9e2ef;
     padding: 3.5rem;
-    border: 1px solid $base-black;
     border-radius: 0.5rem;
     display: flex;
     flex-direction: column;

@@ -19,7 +19,6 @@ import Popup from "./components/Popup";
 import Login from "./pages/Login";
 import Main from "./pages/Main";
 import Posts from "./pages/Posts";
-import Details from "./pages/Details";
 import Post from "./pages/Post";
 import Source from "./pages/Source";
 import EditSource from "./pages/EditSource";
@@ -92,11 +91,6 @@ const App = () => {
             <Route
               path="/source/create"
               element={<Main child={<CreateSource />} />}
-            />
-
-            <Route
-              path="/user_details"
-              element={<Main child={<Details />} />}
             />
             <Route path="/login" element={<Login />} />
           </Routes>

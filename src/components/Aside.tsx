@@ -28,7 +28,7 @@ const Aside = ({ aside, setAside }: Props) => {
     <aside className={aside ? "aside active" : "aside"}>
       <ul className="aside__list">
         <li className="aside__list__element aside__list__element--title">
-          <IconContext.Provider value={{ color: "#8DD77F" }}>
+          <IconContext.Provider value={{ color: "#7d69ef" }}>
             <FaHive className="aside__img" />
           </IconContext.Provider>
 
@@ -39,7 +39,7 @@ const Aside = ({ aside, setAside }: Props) => {
             to={"/posts"}
             onClick={() => localStorage.setItem("lastLocation", "/posts")}
           >
-            <IconContext.Provider value={{ color: "#8DD77F" }}>
+            <IconContext.Provider value={{ color: "#7d69ef" }}>
               <FaBox className="aside__list__element__img" />
             </IconContext.Provider>
 
@@ -47,7 +47,7 @@ const Aside = ({ aside, setAside }: Props) => {
           </Link>
         </li>
         <li className="aside__list__element aside__list__element--title">
-          <IconContext.Provider value={{ color: "#8DD77F" }}>
+          <IconContext.Provider value={{ color: "#7d69ef" }}>
             <FaSourcetree />
           </IconContext.Provider>
 
@@ -58,7 +58,7 @@ const Aside = ({ aside, setAside }: Props) => {
             to={"/source"}
             onClick={() => localStorage.setItem("lastLocation", "/source")}
           >
-            <IconContext.Provider value={{ color: "#8DD77F" }}>
+            <IconContext.Provider value={{ color: "#7d69ef" }}>
               <FaLink className="aside__list__element__img" />
             </IconContext.Provider>
 
@@ -67,7 +67,7 @@ const Aside = ({ aside, setAside }: Props) => {
         </li>
         <li className="aside__list__element">
           <Link to={"/source/create"}>
-            <IconContext.Provider value={{ color: "#8DD77F" }}>
+            <IconContext.Provider value={{ color: "#7d69ef" }}>
               <FaRegPlusSquare className="aside__list__element__img" />
             </IconContext.Provider>
 
@@ -75,25 +75,11 @@ const Aside = ({ aside, setAside }: Props) => {
           </Link>
         </li>
         <li className="aside__list__element aside__list__element--title">
-          <IconContext.Provider value={{ color: "#8DD77F" }}>
+          <IconContext.Provider value={{ color: "#7d69ef" }}>
             <MdOutlineManageAccounts className="aside__img" />
           </IconContext.Provider>
 
           <h2>Account</h2>
-        </li>
-        <li className="aside__list__element">
-          <Link
-            to={"/user_details"}
-            onClick={() =>
-              localStorage.setItem("lastLocation", "/user_details")
-            }
-          >
-            <IconContext.Provider value={{ color: "#8DD77F" }}>
-              <FaAlignLeft className="aside__list__element__img" />
-            </IconContext.Provider>
-
-            <span>Details</span>
-          </Link>
         </li>
         <li
           className="aside__list__element"
@@ -103,7 +89,7 @@ const Aside = ({ aside, setAside }: Props) => {
           }}
         >
           <div>
-            <IconContext.Provider value={{ color: "#8DD77F" }}>
+            <IconContext.Provider value={{ color: "#7d69ef" }}>
               <FaSignOutAlt className="aside__list__element__img" />
             </IconContext.Provider>
             <span>Log out</span>

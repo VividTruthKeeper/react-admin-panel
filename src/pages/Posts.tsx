@@ -119,7 +119,7 @@ const Posts = () => {
       <div className="container">
         <div className="posts inner">
           <div className="dashboard__head">
-            <IconContext.Provider value={{ color: "#8DD77F" }}>
+            <IconContext.Provider value={{ color: "#7d69ef" }}>
               <FaBox className="dashboard__img" />
             </IconContext.Provider>
             <h1>Posts</h1>
@@ -228,12 +228,12 @@ const Posts = () => {
                   }}
                 >
                   {sort === "id" && params.id === "asc" ? (
-                    <IconContext.Provider value={{ color: "#00785a" }}>
+                    <IconContext.Provider value={{ color: "#7d69ef" }}>
                       <FaArrowUp />
                     </IconContext.Provider>
                   ) : null}
                   {sort === "id" && params.id === "desc" ? (
-                    <IconContext.Provider value={{ color: "#00785a" }}>
+                    <IconContext.Provider value={{ color: "#7d69ef" }}>
                       <FaArrowDown />
                     </IconContext.Provider>
                   ) : null}
@@ -252,12 +252,12 @@ const Posts = () => {
                   }}
                 >
                   {sort === "title" && params.title === "asc" ? (
-                    <IconContext.Provider value={{ color: "#00785a" }}>
+                    <IconContext.Provider value={{ color: "#7d69ef" }}>
                       <FaArrowUp />
                     </IconContext.Provider>
                   ) : null}
                   {sort === "title" && params.title === "desc" ? (
-                    <IconContext.Provider value={{ color: "#00785a" }}>
+                    <IconContext.Provider value={{ color: "#7d69ef" }}>
                       <FaArrowDown />
                     </IconContext.Provider>
                   ) : null}
@@ -273,12 +273,12 @@ const Posts = () => {
                   }}
                 >
                   {sort === "link" && params.link === "asc" ? (
-                    <IconContext.Provider value={{ color: "#00785a" }}>
+                    <IconContext.Provider value={{ color: "#7d69ef" }}>
                       <FaArrowUp />
                     </IconContext.Provider>
                   ) : null}
                   {sort === "link" && params.link === "desc" ? (
-                    <IconContext.Provider value={{ color: "#00785a" }}>
+                    <IconContext.Provider value={{ color: "#7d69ef" }}>
                       <FaArrowDown />
                     </IconContext.Provider>
                   ) : null}
@@ -294,12 +294,12 @@ const Posts = () => {
                   }}
                 >
                   {sort === "published" && params.published === "asc" ? (
-                    <IconContext.Provider value={{ color: "#00785a" }}>
+                    <IconContext.Provider value={{ color: "#7d69ef" }}>
                       <FaArrowUp />
                     </IconContext.Provider>
                   ) : null}
                   {sort === "published" && params.published === "desc" ? (
-                    <IconContext.Provider value={{ color: "#00785a" }}>
+                    <IconContext.Provider value={{ color: "#7d69ef" }}>
                       <FaArrowDown />
                     </IconContext.Provider>
                   ) : null}
@@ -315,12 +315,12 @@ const Posts = () => {
                   }}
                 >
                   {sort === "created" && params.created === "asc" ? (
-                    <IconContext.Provider value={{ color: "#00785a" }}>
+                    <IconContext.Provider value={{ color: "#7d69ef" }}>
                       <FaArrowUp />
                     </IconContext.Provider>
                   ) : null}
                   {sort === "created" && params.created === "desc" ? (
-                    <IconContext.Provider value={{ color: "#00785a" }}>
+                    <IconContext.Provider value={{ color: "#7d69ef" }}>
                       <FaArrowDown />
                     </IconContext.Provider>
                   ) : null}
@@ -336,12 +336,12 @@ const Posts = () => {
                   }}
                 >
                   {sort === "updated" && params.updated === "asc" ? (
-                    <IconContext.Provider value={{ color: "#00785a" }}>
+                    <IconContext.Provider value={{ color: "#7d69ef" }}>
                       <FaArrowUp />
                     </IconContext.Provider>
                   ) : null}
                   {sort === "updated" && params.updated === "desc" ? (
-                    <IconContext.Provider value={{ color: "#00785a" }}>
+                    <IconContext.Provider value={{ color: "#7d69ef" }}>
                       <FaArrowDown />
                     </IconContext.Provider>
                   ) : null}

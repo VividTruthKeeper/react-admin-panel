@@ -43,7 +43,7 @@
     }
 
     input {
-      background: $light-black;
+      background: $light-gray;
       color: $base-gray;
       font-size: 1.6rem;
       padding: 1rem 1.2rem;
@@ -59,8 +59,8 @@
   }
   select {
     padding: 1rem 1.2rem;
-    color: $base-gray;
-    background: $light-black;
+    color: #495057;
+    background: $light-gray;
     border-radius: 0.5rem;
   }
 
@@ -71,13 +71,14 @@
   }
 
   &__table {
+    border: 0.1rem solid rgba(0, 40, 100, 0.12);
     &.disabled {
       pointer-events: none;
     }
 
     &__head {
       min-height: unset !important;
-      background: $light-black;
+      background: $light-gray;
     }
 
     th {
@@ -96,38 +97,41 @@
       @include transition-std;
 
       input {
+        color: $dark-gray;
+        border: 0.1rem solid $dark-gray;
         padding: 1rem 2rem;
         width: 100%;
       }
 
       span {
         width: 100%;
-        color: $base-gray;
+        color: #494057;
+        font-weight: normal;
         @include transition-std;
       }
 
       &.active {
-        background: $light-blue;
+        background: $dark-gray;
 
         @include transition-std;
         span {
-          color: $base-black;
+          color: #494057;
           @include transition-std;
         }
       }
     }
 
     .post-link {
-      background: $base-black;
-      &:nth-child(2n) {
-        background: $light-blue;
-        td {
-          color: $light-black;
+      background: $base-gray;
+      td {
+        color: $light-black;
 
-          svg {
-            fill: $base-black;
-          }
+        svg {
+          color: $base-blue;
         }
+      }
+      &:nth-child(2n) {
+        background: $light-gray;
       }
     }
 
@@ -179,7 +183,7 @@
     max-width: 30rem;
     font-size: 1.6rem;
     border-radius: 0.5rem;
-    background: #2fad8c;
+    background: $base-blue;
     padding: 0.5rem 2rem;
     transition: 0.3s all ease;
     text-align: center;
@@ -221,10 +225,18 @@
     }
   }
 
+  &__date {
+    font-size: 1.6rem;
+    font-weight: normal;
+  }
+
   &__content {
     display: flex;
     flex-direction: column;
     gap: 3rem;
+    background: $base-white;
+    padding: 2rem;
+    border: 0.1rem solid rgba(0, 40, 100, 0.12);
 
     &__btn {
       display: flex;
@@ -235,9 +247,13 @@
       cursor: pointer;
       width: 100%;
       padding: 1rem 1.2rem;
-      color: $base-gray;
+
       font-size: 1.6rem;
       background-color: $base-blue;
+
+      span {
+        color: $base-white;
+      }
 
       @include transition-std;
       &:hover {
@@ -251,11 +267,11 @@
       padding: 0.6rem 1.2rem;
       border-radius: 0.5rem;
       cursor: default;
-      background: $light-black;
+      background: $base-gray;
     }
 
     textarea {
-      background: $light-black;
+      background: $base-gray;
       cursor: default;
       padding: 0.6rem 1.2rem;
       resize: none;

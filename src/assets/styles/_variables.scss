@@ -1,11 +1,13 @@
-$base-gray: #f2f2f2;
+$base-gray: #f0f4f8;
+$dark-gray: #d3d3d3;
+$light-gray: #fafafa;
 $light-black: #393e46;
-$base-black: #3b4452;
+$base-black: #f0f4f8;
 $dark-blue: #00785a;
-$light-blue: #5dd8ab;
-$base-blue: #2fad8c;
-$hover-blue: #268a6f;
-$body-white: #f7f3dd;
+$light-blue: #f0f4f8;
+$base-blue: #7d69ef;
+$hover-blue: #6f60c7;
+$base-white: #ffffff;
 
 @mixin transition-std {
   transition: 0.3s all ease;

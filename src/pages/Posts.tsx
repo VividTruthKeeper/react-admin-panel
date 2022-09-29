@@ -97,12 +97,9 @@ const Posts = () => {
     keys.map((key) => {
       const keyy = key as keyof typeof filters;
       if (filters[keyy].value.length > 0) {
-        outString =
-          outString +
-          `&${filters[keyy].name}=${filters[keyy].value.split("T")[0]}%20${
-            filters[keyy].value.split("T")[1]
-          }`;
+        outString = `${outString}&${filters[keyy].name}=${filters[keyy].value}`;
       }
+      console.log(outString);
     });
 
     return outString;
@@ -394,7 +391,7 @@ const Posts = () => {
                   <input
                     placeholder="Filter by published"
                     id="filter-published"
-                    type="datetime-local"
+                    type="date"
                     value={filters.fil_publish_date.value}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                       setFilters({
@@ -411,7 +408,7 @@ const Posts = () => {
                   <input
                     placeholder="Filter by created"
                     id="filter-created"
-                    type="datetime-local"
+                    type="date"
                     value={filters.fil_createdAt.value}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                       setFilters({
@@ -428,7 +425,7 @@ const Posts = () => {
                   <input
                     placeholder="Filter by updated"
                     id="filter-updated"
-                    type="datetime-local"
+                    type="date"
                     value={filters.fil_updatedAt.value}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setFilters({

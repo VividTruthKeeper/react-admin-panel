@@ -81,14 +81,6 @@ const Post = () => {
               />
             </div>
 
-            <div className="post__content__block">
-              <h4>Summary</h4>
-              <textarea
-                readOnly
-                rows={5}
-                value={postData ? postData.summary : ""}
-              ></textarea>
-            </div>
             <a
               className="post__content__btn"
               href={postData ? postData.link : ""}

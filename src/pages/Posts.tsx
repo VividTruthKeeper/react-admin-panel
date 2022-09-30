@@ -38,8 +38,8 @@ interface filtersType {
   fil_link: filterType;
   fil_publish_date: filterType;
   fil_summary: filterType;
-  fil_createdAt: filterType;
-  fil_updatedAt: filterType;
+  fil_created_atAt: filterType;
+  fil_updated_atAt: filterType;
 }
 
 const Posts = () => {
@@ -59,9 +59,9 @@ const Posts = () => {
     title: "asc",
     link: "asc",
     date: "asc",
-    published: "asc",
-    created: "asc",
-    updated: "asc",
+    publish_date: "asc",
+    created_at: "asc",
+    updated_at: "asc",
   });
 
   const [filters, setFilters] = useState<filtersType>({
@@ -81,12 +81,12 @@ const Posts = () => {
       name: "fil_summary",
       value: "",
     },
-    fil_createdAt: {
-      name: "fil_createdAt",
+    fil_created_atAt: {
+      name: "fil_created_atAt",
       value: "",
     },
-    fil_updatedAt: {
-      name: "fil_updatedAt",
+    fil_updated_atAt: {
+      name: "fil_updated_atAt",
       value: "",
     },
   });
@@ -199,12 +199,12 @@ const Posts = () => {
                       name: "fil_summary",
                       value: "",
                     },
-                    fil_createdAt: {
-                      name: "fil_createdAt",
+                    fil_created_atAt: {
+                      name: "fil_created_atAt",
                       value: "",
                     },
-                    fil_updatedAt: {
-                      name: "fil_updatedAt",
+                    fil_updated_atAt: {
+                      name: "fil_updated_atAt",
                       value: "",
                     },
                   });
@@ -285,20 +285,20 @@ const Posts = () => {
                   <span>Link</span>
                 </th>
                 <th
-                  className={sort === "published" ? "active" : ""}
+                  className={sort === "publish_date" ? "active" : ""}
                   onClick={() => {
-                    setSort("published");
-                    if (params.published !== "asc")
-                      setParams({ ...params, published: "asc" });
-                    else setParams({ ...params, published: "desc" });
+                    setSort("publish_date");
+                    if (params.publish_date !== "asc")
+                      setParams({ ...params, publish_date: "asc" });
+                    else setParams({ ...params, publish_date: "desc" });
                   }}
                 >
-                  {sort === "published" && params.published === "asc" ? (
+                  {sort === "publish_date" && params.publish_date === "asc" ? (
                     <IconContext.Provider value={{ color: "#7d69ef" }}>
                       <FaArrowUp />
                     </IconContext.Provider>
                   ) : null}
-                  {sort === "published" && params.published === "desc" ? (
+                  {sort === "publish_date" && params.publish_date === "desc" ? (
                     <IconContext.Provider value={{ color: "#7d69ef" }}>
                       <FaArrowDown />
                     </IconContext.Provider>
@@ -306,20 +306,20 @@ const Posts = () => {
                   <span>Published</span>
                 </th>
                 <th
-                  className={sort === "created" ? "active" : ""}
+                  className={sort === "created_at" ? "active" : ""}
                   onClick={() => {
-                    setSort("created");
-                    if (params.created !== "asc")
-                      setParams({ ...params, created: "asc" });
-                    else setParams({ ...params, created: "desc" });
+                    setSort("created_at");
+                    if (params.created_at !== "asc")
+                      setParams({ ...params, created_at: "asc" });
+                    else setParams({ ...params, created_at: "desc" });
                   }}
                 >
-                  {sort === "created" && params.created === "asc" ? (
+                  {sort === "created_at" && params.created_at === "asc" ? (
                     <IconContext.Provider value={{ color: "#7d69ef" }}>
                       <FaArrowUp />
                     </IconContext.Provider>
                   ) : null}
-                  {sort === "created" && params.created === "desc" ? (
+                  {sort === "created_at" && params.created_at === "desc" ? (
                     <IconContext.Provider value={{ color: "#7d69ef" }}>
                       <FaArrowDown />
                     </IconContext.Provider>
@@ -327,20 +327,20 @@ const Posts = () => {
                   <span>Created</span>
                 </th>
                 <th
-                  className={sort === "updated" ? "active" : ""}
+                  className={sort === "updated_at" ? "active" : ""}
                   onClick={() => {
-                    setSort("updated");
-                    if (params.updated !== "asc")
-                      setParams({ ...params, updated: "asc" });
-                    else setParams({ ...params, updated: "desc" });
+                    setSort("updated_at");
+                    if (params.updated_at !== "asc")
+                      setParams({ ...params, updated_at: "asc" });
+                    else setParams({ ...params, updated_at: "desc" });
                   }}
                 >
-                  {sort === "updated" && params.updated === "asc" ? (
+                  {sort === "updated_at" && params.updated_at === "asc" ? (
                     <IconContext.Provider value={{ color: "#7d69ef" }}>
                       <FaArrowUp />
                     </IconContext.Provider>
                   ) : null}
-                  {sort === "updated" && params.updated === "desc" ? (
+                  {sort === "updated_at" && params.updated_at === "desc" ? (
                     <IconContext.Provider value={{ color: "#7d69ef" }}>
                       <FaArrowDown />
                     </IconContext.Provider>
@@ -388,8 +388,8 @@ const Posts = () => {
                 </th>
                 <th>
                   <input
-                    placeholder="Filter by published"
-                    id="filter-published"
+                    placeholder="Filter by publish_date"
+                    id="filter-publish_date"
                     type="date"
                     value={filters.fil_publish_date.value}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -405,15 +405,15 @@ const Posts = () => {
                 </th>
                 <th>
                   <input
-                    placeholder="Filter by created"
-                    id="filter-created"
+                    placeholder="Filter by created_at"
+                    id="filter-created_at"
                     type="date"
-                    value={filters.fil_createdAt.value}
+                    value={filters.fil_created_atAt.value}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                       setFilters({
                         ...filters,
-                        fil_createdAt: {
-                          ...filters.fil_createdAt,
+                        fil_created_atAt: {
+                          ...filters.fil_created_atAt,
                           value: e.target.value,
                         },
                       });
@@ -422,15 +422,15 @@ const Posts = () => {
                 </th>
                 <th>
                   <input
-                    placeholder="Filter by updated"
-                    id="filter-updated"
+                    placeholder="Filter by updated_at"
+                    id="filter-updated_at"
                     type="date"
-                    value={filters.fil_updatedAt.value}
+                    value={filters.fil_updated_atAt.value}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setFilters({
                         ...filters,
-                        fil_updatedAt: {
-                          ...filters.fil_updatedAt,
+                        fil_updated_atAt: {
+                          ...filters.fil_updated_atAt,
                           value: e.target.value,
                         },
                       })
@@ -467,11 +467,11 @@ const Posts = () => {
                             <td>{`${parseDate(post.publish_date)[0]}, ${
                               parseDate(post.publish_date)[1]
                             }`}</td>
-                            <td>{`${parseDate(post.createdAt)[0]}, ${
-                              parseDate(post.createdAt)[1]
+                            <td>{`${parseDate(post.created_at)[0]}, ${
+                              parseDate(post.created_at)[1]
                             }`}</td>
-                            <td>{`${parseDate(post.updatedAt)[0]}, ${
-                              parseDate(post.updatedAt)[1]
+                            <td>{`${parseDate(post.created_at)[0]}, ${
+                              parseDate(post.created_at)[1]
                             }`}</td>
                           </tr>
                         </Link>

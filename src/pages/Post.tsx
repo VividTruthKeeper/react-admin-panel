@@ -33,7 +33,6 @@ const Post = () => {
       }
     }
   }, [posts]);
-  console.log(postData ? parseDate(postData.publish_date)[0] : "");
   return (
     <main className="post">
       <div className="container">
@@ -57,28 +56,19 @@ const Post = () => {
           </div>
           <div className="post__content">
             <div className="post__content__block">
-              <h4>ID</h4>
-              <input type="text" readOnly value={postData ? postData.id : ""} />
-            </div>
-            <div className="post__content__block">
               <h4>Category</h4>
               <input
                 type="text"
                 readOnly
-                value={
-                  postData
-                    ? capitalizeFirstLetter(postData.category.toLowerCase())
-                    : ""
-                }
+                value={postData ? postData.category : ""}
               />
             </div>
             <div className="post__content__block">
-              <h4>Title</h4>
-              <input
-                type="text"
+              <h4>Summary</h4>
+              <textarea
                 readOnly
-                value={postData ? postData.title : ""}
-              />
+                value={postData ? postData.summary : ""}
+              ></textarea>
             </div>
 
             <a
@@ -128,8 +118,8 @@ const Post = () => {
                                       parseDate(History.new_published_at)[1]
                                     }`}
                                   </td>
-                                  <td>{`${parseDate(History.createdAt)[0]}, ${
-                                    parseDate(History.createdAt)[1]
+                                  <td>{`${parseDate(History.created_at)[0]}, ${
+                                    parseDate(History.created_at)[1]
                                   }`}</td>
                                   <td>{`${parseDate(History.updatedAt)[0]}, ${
                                     parseDate(History.updatedAt)[1]

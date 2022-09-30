@@ -2,7 +2,7 @@ export interface HistoryList {
   old_published_at: Date;
   new_published_at: Date;
   PostID: number;
-  createdAt: Date;
+  created_at: Date;
   updatedAt: Date;
 }
 export interface PostType {
@@ -12,7 +12,7 @@ export interface PostType {
   link: string;
   publish_date: Date;
   summary: string;
-  createdAt: Date;
+  created_at: Date;
   updatedAt: Date;
   HistoryList: HistoryList[];
 }
@@ -22,7 +22,7 @@ export interface paramsType {
   title: "asc" | "desc";
   link: "asc" | "desc";
   date: "asc" | "desc";
-  published: "asc" | "desc";
-  created: "asc" | "desc";
-  updated: "asc" | "desc";
+  publish_date: "asc" | "desc";
+  created_at: "asc" | "desc";
+  updated_at: "asc" | "desc";
 }

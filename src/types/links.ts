@@ -3,5 +3,5 @@ export interface LinksAll {
   name: string;
   source: string;
   created_at: Date;
-  updatedAt: Date;
+  updated_at: Date;
 }

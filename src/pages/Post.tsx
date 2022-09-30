@@ -44,6 +44,7 @@ const Post = () => {
             <h1 className="post__head">{postData ? postData.title : ""}</h1>
           </div>
           <div className="post__date">
+            <h4>Publish date:</h4>
             <h4>
               {postData
                 ? postData.publish_date
@@ -69,6 +70,34 @@ const Post = () => {
                 readOnly
                 value={postData ? postData.summary : ""}
               ></textarea>
+            </div>
+            <div className="post__content__block">
+              <h4>Created</h4>
+              <input
+                type="text"
+                readOnly
+                value={
+                  postData
+                    ? `${parseDate(postData.created_at)[0]}, ${
+                        parseDate(postData.created_at)[1]
+                      }`
+                    : ""
+                }
+              />
+            </div>
+            <div className="post__content__block">
+              <h4>Updated</h4>
+              <input
+                type="text"
+                readOnly
+                value={
+                  postData
+                    ? `${parseDate(postData.updated_at)[0]}, ${
+                        parseDate(postData.updated_at)[1]
+                      }`
+                    : ""
+                }
+              />
             </div>
 
             <a
@@ -121,8 +150,8 @@ const Post = () => {
                                   <td>{`${parseDate(History.created_at)[0]}, ${
                                     parseDate(History.created_at)[1]
                                   }`}</td>
-                                  <td>{`${parseDate(History.updatedAt)[0]}, ${
-                                    parseDate(History.updatedAt)[1]
+                                  <td>{`${parseDate(History.updated_at)[0]}, ${
+                                    parseDate(History.updated_at)[1]
                                   }`}</td>
                                 </tr>
                               );

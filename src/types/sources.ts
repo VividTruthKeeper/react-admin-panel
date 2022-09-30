@@ -3,7 +3,7 @@ export interface SourceType {
   name: string;
   source: string;
   created_at: Date;
-  updatedAt: Date;
+  updated_at: Date;
 }
 
 export interface SourceEditDataType {

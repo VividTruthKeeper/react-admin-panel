@@ -3,7 +3,7 @@ export interface HistoryList {
   new_published_at: Date;
   PostID: number;
   created_at: Date;
-  updatedAt: Date;
+  updated_at: Date;
 }
 export interface PostType {
   id: number;
@@ -13,7 +13,7 @@ export interface PostType {
   publish_date: Date;
   summary: string;
   created_at: Date;
-  updatedAt: Date;
+  updated_at: Date;
   HistoryList: HistoryList[];
 }
 

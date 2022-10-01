@@ -21,13 +21,14 @@ const Post = () => {
   const [postData, setPostData] = useState<PostType>();
   const { posts } = useContext<ContextType>(PostContext).postValue;
   const { id } = useParams();
-
+  const parser = new DOMParser();
   useEffect(() => {
     if (posts) {
       if (posts[0].id !== -1) {
         posts.map((post: PostType) => {
           if (post.id.toString() === id) {
             setPostData(post);
+            // console.log(parser.parseFromString(post.summary, "text/xml"));
           }
         });
       }
@@ -66,10 +67,11 @@ const Post = () => {
             </div>
             <div className="post__content__block">
               <h4>Summary</h4>
-              <textarea
-                readOnly
-                value={postData ? postData.summary : ""}
-              ></textarea>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: postData ? postData.summary : "",
+                }}
+              ></p>
             </div>
             <div className="post__content__block">
               <h4>Created</h4>

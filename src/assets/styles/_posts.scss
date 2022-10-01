@@ -194,8 +194,8 @@
 
     &:hover {
       @include transition-std;
-      background-color: #268a6f;
-      border: 0.1rem solid #268a6f;
+      background-color: $hover-blue;
+      border: 0.1rem solid $hover-blue;
     }
 
     &__btn {

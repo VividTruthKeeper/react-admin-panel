@@ -58,10 +58,10 @@ const Source = () => {
               </thead>
               <tbody>
                 {sources ? (
-                  sources.map((source: LinksAll) => {
+                  sources.map((source: LinksAll, index: number) => {
                     return (
                       <tr key={uuidv4()}>
-                        <td>{source.id}</td>
+                        <td>{index + 1}</td>
                         <td>{source.name}</td>
                         <td className="category__table__tab">
                           {source.source}
